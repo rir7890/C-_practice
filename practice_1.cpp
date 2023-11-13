@@ -1,23 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isRotated(string str1, string str2)
+// int shortestCommonSupersequence(string s1, string s2, int m, int n)
+// {
+//     string s = "";
+//     for (int i = 0; i < m - 1; i++)
+//     {
+//         for (int j = i + 1; j < m; j++)
+//         {
+//             if (s2.find(s1.substr(i, j)) != string::npos)
+//             {
+//                 s += s1.substr(i, j);
+//                 // cout << s1.substr(i, j) << endl;
+//             }
+//         }
+//     }
+//     // cout << s.length() << endl;
+//     return s1.length() + s2.length() - s.length();
+// }
+
+int shortestCommonSupersequence(string s1, string s2, int m, int n)
 {
-    if (str1.length() != str2.length())
+    vector<vector<int>> v(m + 1, vector<int>(n + 1, 0));
+    for (int i = 1; i <= m; i++)
     {
-        return false;
+        for (int j = 1; j <= n; j++)
+        {
+            if (s1[i - 1] == s2[j - 1])
+            {
+                v[i][j] = 1 + v[i - 1][j - 1];
+            }
+            else
+            {
+                v[i][j] = max(v[i - 1][j], v[i][j - 1]);
+            }
+        }
     }
-    string s = str2 + str2;
-    if (s.find(str1))
-    {
-        return true;
-    }
-    return false;
+    return (v[m][n] + (m - v[m][n]) + (n - v[m][n]));
 }
+
 int main()
 {
+    cout << shortestCommonSupersequence("abcd", "xycd", 4, 4);
     return 0;
 }
+
+// bool isRotated(string str1, string str2)
+// {
+//     if (str1.length() != str2.length())
+//     {
+//         return false;
+//     }
+//     string s = str2 + str2;
+//     if (s.find(str1))
+//     {
+//         return true;
+//     }
+//     return false;
+// }
+// int main()
+// {
+//     return 0;
+// }
 
 // #define MAX_Chars 256
 // bool areIsomorphic(string const str1, string const str2)
