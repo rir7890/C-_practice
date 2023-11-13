@@ -1,6 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isRotated(string str1, string str2)
+{
+    if (str1.length() != str2.length())
+    {
+        return false;
+    }
+    string s = str2 + str2;
+    if (s.find(str1))
+    {
+        return true;
+    }
+    return false;
+}
+int main()
+{
+    return 0;
+}
+
 // #define MAX_Chars 256
 // bool areIsomorphic(string const str1, string const str2)
 // {
