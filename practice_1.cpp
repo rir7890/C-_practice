@@ -1,6 +1,94 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int BOSubarraySum(vector<int> &a, int n, int k)
+// {
+//     int count = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int sum = 0;
+//         for (int j = i; j < n; j++)
+//         {
+//             sum += a[j];
+//             if (sum == k)
+//             {
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// }
+
+// int BFSubarraySum(vector<int> &a, int n, int k)
+// {
+//     int count = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = i; j < n; j++)
+//         {
+//             int sum = 0;
+//             for (int k = i; k <= j; k++)
+//             {
+//                 sum += a[k];
+//             }
+//             if (sum == k)
+//             {
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// }
+
+// int countSubarray(vector<int> &v, int n, int k)
+// {
+//     // wrong code here
+//     int i = -1;
+//     int count = 0;
+//     int j = 0;
+//     int sum = 0;
+//     while (i < n && j < n)
+//     {
+//         sum += v[j];
+//         if (sum == k)
+//         {
+//             count++;
+//             i++;
+//             j++;
+//         }
+//         else if (sum < k)
+//         {
+//             j++;
+//         }
+//         else if (sum > k)
+//         {
+//             i++;
+//             sum -= v[i];
+//         }
+//     }
+//     return count;
+// }
+
+// int sumOfSubarray(vector<int> &v, int n)
+// {
+//     // correct code here for sum of all subarray elements
+//     int sum = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += v[i];
+//     }
+//     return sum * (1 << (n - 1));
+// }
+
+// int main()
+// {
+//     vector<int> a{3, 1, 2, 4};
+//     int n = a.size();
+//     // cout << countSubarray(a, n, 6);
+//     cout << BOSubarraySum(a, n, 6);
+//     return 0;
+// }
+
 // int shortestCommonSupersequence(string s1, string s2, int m, int n)
 // {
 //     string s = "";
@@ -19,31 +107,30 @@ using namespace std;
 //     return s1.length() + s2.length() - s.length();
 // }
 
-int shortestCommonSupersequence(string s1, string s2, int m, int n)
-{
-    vector<vector<int>> v(m + 1, vector<int>(n + 1, 0));
-    for (int i = 1; i <= m; i++)
-    {
-        for (int j = 1; j <= n; j++)
-        {
-            if (s1[i - 1] == s2[j - 1])
-            {
-                v[i][j] = 1 + v[i - 1][j - 1];
-            }
-            else
-            {
-                v[i][j] = max(v[i - 1][j], v[i][j - 1]);
-            }
-        }
-    }
-    return (v[m][n] + (m - v[m][n]) + (n - v[m][n]));
-}
-
-int main()
-{
-    cout << shortestCommonSupersequence("abcd", "xycd", 4, 4);
-    return 0;
-}
+// int shortestCommonSupersequence(string s1, string s2, int m, int n)
+// {
+//     vector<vector<int>> v(m + 1, vector<int>(n + 1, 0));
+//     for (int i = 1; i <= m; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//         {
+//             if (s1[i - 1] == s2[j - 1])
+//             {
+//                 v[i][j] = 1 + v[i - 1][j - 1];
+//             }
+//             else
+//             {
+//                 v[i][j] = max(v[i - 1][j], v[i][j - 1]);
+//             }
+//         }
+//     }
+//     return (v[m][n] + (m - v[m][n]) + (n - v[m][n]));
+// }
+// int main()
+// {
+//     cout << shortestCommonSupersequence("abcd", "xycd", 4, 4);
+//     return 0;
+// }
 
 // bool isRotated(string str1, string str2)
 // {
