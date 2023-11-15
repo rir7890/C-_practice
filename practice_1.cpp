@@ -1,6 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// void solve(int i, string &s, string &f, set<string> &st)
+// {
+//     if (i == s.length())
+//     {
+//         st.insert(f);
+//         return;
+//     }
+//     f = f + s[i];
+//     solve(i + 1, s, f, st);
+//     f.pop_back();
+//     solve(i + 1, s, f, st);
+// }
+// string betterString(string str1, string str2)
+// {
+//     set<string> s1;
+//     set<string> s2;
+//     string f1 = "";
+//     solve(0, str1, f1, s1);
+//     f1 = "";
+//     solve(0, str2, f1, s2);
+//     if (s1.size() > s2.size())
+//     {
+//         return str1;
+//     }
+//     else if (s2.size() > s1.size())
+//     {
+//         return str2;
+//     }
+//     return str1;
+// }
+// int main()
+// {
+//     string s1 = "gggl";
+//     string s2 = "ggll";
+//     cout << betterString(s1, s2) << endl;
+//     return 0;
+// }
+
 // int BOSubarraySum(vector<int> &a, int n, int k)
 // {
 //     int count = 0;
