@@ -1,6 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// char to_char(int n)
+// {
+//     return '0' + n;
+// }
+// void dfs(int k, string prev, unordered_set<string> &seen, string &ans)
+// {
+//     for (int i = 0; i < k; i++)
+//     {
+//         string curr = prev + to_char(i);
+//         // cout << "curr -> " << curr << endl;
+//         if (seen.find(curr) == seen.end()) // curr is not visited
+//         {
+//             seen.insert(curr);
+//             dfs(k, curr.substr(1), seen, ans);
+//             ans.push_back(to_char(i));
+//             // cout << "ans ->" << ans << endl;
+//         }
+//     }
+// }
+// string findString(int n, int k)
+// {
+//     string startingNode = string(n - 1, '0');
+//     string ans;
+//     unordered_set<string> seen;
+//     cout << startingNode << endl;
+//     dfs(k, startingNode, seen, ans);
+//     ans += startingNode;
+//     return ans;
+// }
+// int main()
+// {
+//     cout << findString(2, 2) << endl;
+//     return 0;
+// }
+
 // void solve(int i, string &s, string &f, set<string> &st)
 // {
 //     if (i == s.length())
