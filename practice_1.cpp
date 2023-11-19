@@ -1,6 +1,96 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int x)
+    {
+        data = x;
+        next = NULL;
+    }
+};
+
+Node *inputList(int size)
+{
+    Node *head, *tail;
+    int val;
+    cin >> val;
+    head = tail = new Node(val);
+    while (--size)
+    {
+        cin >> val;
+        tail->next = new Node(val);
+        tail = tail->next;
+    }
+    return head;
+}
+
+void printList(Node *n)
+{
+    if (n)
+    {
+        while (n)
+        {
+            cout << n->data << " ";
+            n = n->next;
+        }
+    }
+    else
+        cout << " ";
+}
+
+Node *findIntersection(Node *h1, Node *h2)
+{
+    Node *h, *t;
+    t = h = new Node(0);
+    while (h1 && h2)
+    {
+        if (h1->data == h2->data)
+        {
+            t->next = new Node(h1->data);
+            t = t->next;
+            h1 = h1->next;
+            h2 = h2->next;
+        }
+        else if (h1->data > h2->data)
+        {
+            h2 = h2->next;
+        }
+        else
+        {
+            h1 = h1->next;
+        }
+    }
+    return h->next;
+}
+
+int main()
+{
+    Node *h1 = new Node(1);
+    h1->next = new Node(2);
+    h1->next->next = new Node(3);
+    h1->next->next->next = new Node(4);
+    h1->next->next->next->next = new Node(6);
+    Node *h2 = new Node(2);
+    h2->next = new Node(4);
+    h2->next->next = new Node(6);
+    h2->next->next->next = new Node(8);
+    printList(findIntersection(h1, h2));
+    return 0;
+}
+
+// char to_char(int n) { return '0' + n; }
+// int main()
+// {
+//     string str = "abc";
+//     cout << str + '1' << endl;
+//     cout << str << endl;
+//     cout << str + to_char(1) << endl;
+//     return 0;
+// }
+
 // char to_char(int n)
 // {
 //     return '0' + n;
