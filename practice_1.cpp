@@ -1,85 +1,144 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Node
+vector<vector<int>> ThreeSum(vector<int> &a)
 {
-    int data;
-    Node *next;
-    Node(int x)
+    vector<vector<int>> ans;
+    for (int i = 0; i < a.size(); i++)
     {
-        data = x;
-        next = NULL;
+        for (int j = i + 1; j < a.size(); j++)
+        {
+            for (int k = j + 1; k < a.size(); k++)
+            {
+                if (a[i] + a[j] + a[k] == 0)
+                {
+                    ans.push_back({a[i], a[j], a[k]});
+                }
+            }
+        }
     }
-};
-
-Node *inputList(int size)
-{
-    Node *head, *tail;
-    int val;
-    cin >> val;
-    head = tail = new Node(val);
-    while (--size)
-    {
-        cin >> val;
-        tail->next = new Node(val);
-        tail = tail->next;
-    }
-    return head;
+    return ans;
 }
-
-void printList(Node *n)
+vector<vector<int>> ThreeSum1(vector<int> &a)
 {
-    if (n)
+    set<vector<int>> ans;
+    sort(a.begin(), a.end());
+    for (int i = 0; i < a.size() - 2; i++)
     {
-        while (n)
+        int j = i + 1;
+        int k = a.size() - 1;
+        while (j < k && j < a.size() && k > i)
         {
-            cout << n->data << " ";
-            n = n->next;
+            int sum = a[i] + a[j] + a[k];
+            if (sum == 0)
+            {
+                vector<int> temp = {a[i], a[j], a[k]};
+                // sort(temp.begin(), temp.end());
+                ans.insert(temp);
+                j++, k--;
+            }
+            else if (sum < k)
+            {
+                j++;
+            }
+            else
+            {
+                k--;
+            }
         }
     }
-    else
-        cout << " ";
+    return vector<vector<int>>(ans.begin(), ans.end());
 }
-
-Node *findIntersection(Node *h1, Node *h2)
-{
-    Node *h, *t;
-    t = h = new Node(0);
-    while (h1 && h2)
-    {
-        if (h1->data == h2->data)
-        {
-            t->next = new Node(h1->data);
-            t = t->next;
-            h1 = h1->next;
-            h2 = h2->next;
-        }
-        else if (h1->data > h2->data)
-        {
-            h2 = h2->next;
-        }
-        else
-        {
-            h1 = h1->next;
-        }
-    }
-    return h->next;
-}
-
 int main()
 {
-    Node *h1 = new Node(1);
-    h1->next = new Node(2);
-    h1->next->next = new Node(3);
-    h1->next->next->next = new Node(4);
-    h1->next->next->next->next = new Node(6);
-    Node *h2 = new Node(2);
-    h2->next = new Node(4);
-    h2->next->next = new Node(6);
-    h2->next->next->next = new Node(8);
-    printList(findIntersection(h1, h2));
+    vector<int> a{-1, 0, 1, 2, -1, -4};
+    vector<vector<int>> ans = ThreeSum1(a);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        for (int j = 0; j < ans[i].size(); j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
+
+// struct Node
+// {
+//     int data;
+//     Node *next;
+//     Node(int x)
+//     {
+//         data = x;
+//         next = NULL;
+//     }
+// };
+// Node *inputList(int size)
+// {
+//     Node *head, *tail;
+//     int val;
+//     cin >> val;
+//     head = tail = new Node(val);
+//     while (--size)
+//     {
+//         cin >> val;
+//         tail->next = new Node(val);
+//         tail = tail->next;
+//     }
+//     return head;
+// }
+// void printList(Node *n)
+// {
+//     if (n)
+//     {
+//         while (n)
+//         {
+//             cout << n->data << " ";
+//             n = n->next;
+//         }
+//     }
+//     else
+//         cout << " ";
+// }
+// Node *findIntersection(Node *h1, Node *h2)
+// {
+//     Node *h, *t;
+//     t = h = new Node(0);
+//     while (h1 && h2)
+//     {
+//         if (h1->data == h2->data)
+//         {
+//             t->next = new Node(h1->data);
+//             t = t->next;
+//             h1 = h1->next;
+//             h2 = h2->next;
+//         }
+//         else if (h1->data > h2->data)
+//         {
+//             h2 = h2->next;
+//         }
+//         else
+//         {
+//             h1 = h1->next;
+//         }
+//     }
+//     return h->next;
+// }
+// int main()
+// {
+//     Node *h1 = new Node(1);
+//     h1->next = new Node(2);
+//     h1->next->next = new Node(3);
+//     h1->next->next->next = new Node(4);
+//     h1->next->next->next->next = new Node(6);
+//     Node *h2 = new Node(2);
+//     h2->next = new Node(4);
+//     h2->next->next = new Node(6);
+//     h2->next->next->next = new Node(8);
+//     printList(findIntersection(h1, h2));
+//     return 0;
+// }
 
 // char to_char(int n) { return '0' + n; }
 // int main()
