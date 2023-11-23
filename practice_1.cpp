@@ -1,192 +1,191 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node
-{
-    node *left;
-    int data;
-    int height;
-    node *right;
-};
-class AVL
-{
-public:
-    struct node *root;
-    AVL()
-    {
-        this->root = NULL;
-    }
-    int calheight(node *p)
-    {
-        if (p->left && p->right)
-        {
-            if (p->left->height < p->right->height)
-            {
-                return p->left->height + 1;
-            }
-            return p->left->height + 1;
-        }
-        else if (p->left && p->right == nullptr)
-        {
-            return p->left->height + 1;
-        }
-        else if (p->right && p->left == nullptr)
-        {
-            return p->right->height + 1;
-        }
-        return 0;
-    }
-    int bf(node *n)
-    {
-        if (n->left && n->right)
-        {
-            return n->left->height - n->right->height;
-        }
-        else if (n->left && n->right == nullptr)
-        {
-            return n->left->height;
-        }
-        else if (n->right && n->left == nullptr)
-        {
-            return -(n->right->height);
-        }
-    }
-    node *llrotation(node *n)
-    {
-        node *p;
-        node *tp;
-        tp = n->left;
-        p = n;
-        p->left = tp->right;
-        tp->right = p;
-        return tp;
-    }
-    node *rrrotation(node *n)
-    {
-        node *p;
-        node *tp;
-        p = n;
-        tp = n->right;
-        p->right = tp->left;
-        tp->left = p;
-        return tp;
-    }
-    node *rlrotation(node *n)
-    {
-        node *p;
-        node *tp;
-        node *tp2;
-        p = n;
-        tp = p->right;
-        tp2 = p->right->left;
-        tp->left = tp2->right;
-        p->right = tp2->left;
-        tp2->right = tp;
-        tp->left = p;
-        return tp2;
-    }
-    node *lrrotation(node *n)
-    {
-        node *p;
-        node *tp;
-        node *tp2;
-        p = n;
-        tp = p->left;
-        tp2 = p->left->right;
-        tp->right = tp2->left;
-        p->left = tp2->right;
-        tp2->left = tp;
-        tp2->right = p;
-        return tp2;
-    }
-    node *insert(node *r, int data)
-    {
-        if (r == nullptr)
-        {
-            node *n = new node;
-            n->data = data;
-            r = n;
-            r->left = r->right = nullptr;
-            r->height = 1;
-            return r;
-        }
-        else
-        {
-            if (data < r->data)
-            {
-                r->left = insert(r->left, data);
-            }
-            else
-            {
-                r->right = insert(r->right, data);
-            }
-        }
-        r->height = calheight(r);
-        if (bf(r) == 2 && bf(r->left) == 1)
-        {
-            r = llrotation(r);
-        }
-        else if (bf(r) == -2 and bf(r->right) == -1)
-        {
-            r = rrrotation(r);
-        }
-        else if (bf(r) == -2 and bf(r->right) == 1)
-        {
-            r = rlrotation(r);
-        }
-        else if (bf(r) == 2 and bf(r->left) == -1)
-        {
-            r = lrrotation(r);
-        }
-        return r;
-    }
-
-    void levelorder_newline()
-    {
-        if (this->root == NULL)
-        {
-            cout << "\n"
-                 << "Empty tree"
-                 << "\n";
-            return;
-        }
-        levelorder_newline(this->root);
-    }
-    void levelorder_newline(node *r)
-    {
-        queue<node *> q;
-        node *curr;
-        q.push(r);
-        q.push(nullptr);
-        while (!q.empty())
-        {
-            curr = q.front();
-            q.pop();
-            if (curr == nullptr and q.size() != 0)
-            {
-                cout << "\n";
-                q.push(nullptr);
-                continue;
-            }
-            if (curr != nullptr)
-            {
-                cout << curr->data << " ";
-                if (curr->left != nullptr)
-                {
-                    q.push(curr->left);
-                }
-                if (curr->right != nullptr)
-                {
-                    q.push(curr->right);
-                }
-            }
-        }
-    }
-    ~AVL()
-    {
-        delete root;
-    }
-};
+// struct node
+// {
+//     node *left;
+//     int data;
+//     int height;
+//     node *right;
+// };
+// class AVL
+// {
+// public:
+//     struct node *root;
+//     AVL()
+//     {
+//         this->root = NULL;
+//     }
+//     int calheight(node *p)
+//     {
+//         if (p->left && p->right)
+//         {
+//             if (p->left->height < p->right->height)
+//             {
+//                 return p->left->height + 1;
+//             }
+//             return p->left->height + 1;
+//         }
+//         else if (p->left && p->right == nullptr)
+//         {
+//             return p->left->height + 1;
+//         }
+//         else if (p->right && p->left == nullptr)
+//         {
+//             return p->right->height + 1;
+//         }
+//         return 0;
+//     }
+//     int bf(node *n)
+//     {
+//         if (n->left && n->right)
+//         {
+//             return n->left->height - n->right->height;
+//         }
+//         else if (n->left && n->right == nullptr)
+//         {
+//             return n->left->height;
+//         }
+//         else if (n->right && n->left == nullptr)
+//         {
+//             return -(n->right->height);
+//         }
+//     }
+//     node *llrotation(node *n)
+//     {
+//         node *p;
+//         node *tp;
+//         tp = n->left;
+//         p = n;
+//         p->left = tp->right;
+//         tp->right = p;
+//         return tp;
+//     }
+//     node *rrrotation(node *n)
+//     {
+//         node *p;
+//         node *tp;
+//         p = n;
+//         tp = n->right;
+//         p->right = tp->left;
+//         tp->left = p;
+//         return tp;
+//     }
+//     node *rlrotation(node *n)
+//     {
+//         node *p;
+//         node *tp;
+//         node *tp2;
+//         p = n;
+//         tp = p->right;
+//         tp2 = p->right->left;
+//         tp->left = tp2->right;
+//         p->right = tp2->left;
+//         tp2->right = tp;
+//         tp->left = p;
+//         return tp2;
+//     }
+//     node *lrrotation(node *n)
+//     {
+//         node *p;
+//         node *tp;
+//         node *tp2;
+//         p = n;
+//         tp = p->left;
+//         tp2 = p->left->right;
+//         tp->right = tp2->left;
+//         p->left = tp2->right;
+//         tp2->left = tp;
+//         tp2->right = p;
+//         return tp2;
+//     }
+//     node *insert(node *r, int data)
+//     {
+//         if (r == nullptr)
+//         {
+//             node *n = new node;
+//             n->data = data;
+//             r = n;
+//             r->left = r->right = nullptr;
+//             r->height = 1;
+//             return r;
+//         }
+//         else
+//         {
+//             if (data < r->data)
+//             {
+//                 r->left = insert(r->left, data);
+//             }
+//             else
+//             {
+//                 r->right = insert(r->right, data);
+//             }
+//         }
+//         r->height = calheight(r);
+//         if (bf(r) == 2 && bf(r->left) == 1)
+//         {
+//             r = llrotation(r);
+//         }
+//         else if (bf(r) == -2 and bf(r->right) == -1)
+//         {
+//             r = rrrotation(r);
+//         }
+//         else if (bf(r) == -2 and bf(r->right) == 1)
+//         {
+//             r = rlrotation(r);
+//         }
+//         else if (bf(r) == 2 and bf(r->left) == -1)
+//         {
+//             r = lrrotation(r);
+//         }
+//         return r;
+//     }
+//     void levelorder_newline()
+//     {
+//         if (this->root == NULL)
+//         {
+//             cout << "\n"
+//                  << "Empty tree"
+//                  << "\n";
+//             return;
+//         }
+//         levelorder_newline(this->root);
+//     }
+//     void levelorder_newline(node *r)
+//     {
+//         queue<node *> q;
+//         node *curr;
+//         q.push(r);
+//         q.push(nullptr);
+//         while (!q.empty())
+//         {
+//             curr = q.front();
+//             q.pop();
+//             if (curr == nullptr and q.size() != 0)
+//             {
+//                 cout << "\n";
+//                 q.push(nullptr);
+//                 continue;
+//             }
+//             if (curr != nullptr)
+//             {
+//                 cout << curr->data << " ";
+//                 if (curr->left != nullptr)
+//                 {
+//                     q.push(curr->left);
+//                 }
+//                 if (curr->right != nullptr)
+//                 {
+//                     q.push(curr->right);
+//                 }
+//             }
+//         }
+//     }
+//     ~AVL()
+//     {
+//         delete root;
+//     }
+// };
 
 // vector<vector<int>> solve(vector<int> a, int n, int k)
 // {
