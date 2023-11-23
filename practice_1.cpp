@@ -1,68 +1,306 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int>> ThreeSum(vector<int> &a)
+struct node
 {
-    vector<vector<int>> ans;
-    for (int i = 0; i < a.size(); i++)
+    node *left;
+    int data;
+    int height;
+    node *right;
+};
+class AVL
+{
+public:
+    struct node *root;
+    AVL()
     {
-        for (int j = i + 1; j < a.size(); j++)
+        this->root = NULL;
+    }
+    int calheight(node *p)
+    {
+        if (p->left && p->right)
         {
-            for (int k = j + 1; k < a.size(); k++)
+            if (p->left->height < p->right->height)
             {
-                if (a[i] + a[j] + a[k] == 0)
+                return p->left->height + 1;
+            }
+            return p->left->height + 1;
+        }
+        else if (p->left && p->right == nullptr)
+        {
+            return p->left->height + 1;
+        }
+        else if (p->right && p->left == nullptr)
+        {
+            return p->right->height + 1;
+        }
+        return 0;
+    }
+    int bf(node *n)
+    {
+        if (n->left && n->right)
+        {
+            return n->left->height - n->right->height;
+        }
+        else if (n->left && n->right == nullptr)
+        {
+            return n->left->height;
+        }
+        else if (n->right && n->left == nullptr)
+        {
+            return -(n->right->height);
+        }
+    }
+    node *llrotation(node *n)
+    {
+        node *p;
+        node *tp;
+        tp = n->left;
+        p = n;
+        p->left = tp->right;
+        tp->right = p;
+        return tp;
+    }
+    node *rrrotation(node *n)
+    {
+        node *p;
+        node *tp;
+        p = n;
+        tp = n->right;
+        p->right = tp->left;
+        tp->left = p;
+        return tp;
+    }
+    node *rlrotation(node *n)
+    {
+        node *p;
+        node *tp;
+        node *tp2;
+        p = n;
+        tp = p->right;
+        tp2 = p->right->left;
+        tp->left = tp2->right;
+        p->right = tp2->left;
+        tp2->right = tp;
+        tp->left = p;
+        return tp2;
+    }
+    node *lrrotation(node *n)
+    {
+        node *p;
+        node *tp;
+        node *tp2;
+        p = n;
+        tp = p->left;
+        tp2 = p->left->right;
+        tp->right = tp2->left;
+        p->left = tp2->right;
+        tp2->left = tp;
+        tp2->right = p;
+        return tp2;
+    }
+    node *insert(node *r, int data)
+    {
+        if (r == nullptr)
+        {
+            node *n = new node;
+            n->data = data;
+            r = n;
+            r->left = r->right = nullptr;
+            r->height = 1;
+            return r;
+        }
+        else
+        {
+            if (data < r->data)
+            {
+                r->left = insert(r->left, data);
+            }
+            else
+            {
+                r->right = insert(r->right, data);
+            }
+        }
+        r->height = calheight(r);
+        if (bf(r) == 2 && bf(r->left) == 1)
+        {
+            r = llrotation(r);
+        }
+        else if (bf(r) == -2 and bf(r->right) == -1)
+        {
+            r = rrrotation(r);
+        }
+        else if (bf(r) == -2 and bf(r->right) == 1)
+        {
+            r = rlrotation(r);
+        }
+        else if (bf(r) == 2 and bf(r->left) == -1)
+        {
+            r = lrrotation(r);
+        }
+        return r;
+    }
+
+    void levelorder_newline()
+    {
+        if (this->root == NULL)
+        {
+            cout << "\n"
+                 << "Empty tree"
+                 << "\n";
+            return;
+        }
+        levelorder_newline(this->root);
+    }
+    void levelorder_newline(node *r)
+    {
+        queue<node *> q;
+        node *curr;
+        q.push(r);
+        q.push(nullptr);
+        while (!q.empty())
+        {
+            curr = q.front();
+            q.pop();
+            if (curr == nullptr and q.size() != 0)
+            {
+                cout << "\n";
+                q.push(nullptr);
+                continue;
+            }
+            if (curr != nullptr)
+            {
+                cout << curr->data << " ";
+                if (curr->left != nullptr)
                 {
-                    ans.push_back({a[i], a[j], a[k]});
+                    q.push(curr->left);
+                }
+                if (curr->right != nullptr)
+                {
+                    q.push(curr->right);
                 }
             }
         }
     }
-    return ans;
-}
-vector<vector<int>> ThreeSum1(vector<int> &a)
-{
-    set<vector<int>> ans;
-    sort(a.begin(), a.end());
-    for (int i = 0; i < a.size() - 2; i++)
+    ~AVL()
     {
-        int j = i + 1;
-        int k = a.size() - 1;
-        while (j < k && j < a.size() && k > i)
-        {
-            int sum = a[i] + a[j] + a[k];
-            if (sum == 0)
-            {
-                vector<int> temp = {a[i], a[j], a[k]};
-                // sort(temp.begin(), temp.end());
-                ans.insert(temp);
-                j++, k--;
-            }
-            else if (sum < k)
-            {
-                j++;
-            }
-            else
-            {
-                k--;
-            }
-        }
+        delete root;
     }
-    return vector<vector<int>>(ans.begin(), ans.end());
-}
-int main()
-{
-    vector<int> a{-1, 0, 1, 2, -1, -4};
-    vector<vector<int>> ans = ThreeSum1(a);
-    for (int i = 0; i < ans.size(); i++)
-    {
-        for (int j = 0; j < ans[i].size(); j++)
-        {
-            cout << ans[i][j] << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
+};
+
+// vector<vector<int>> solve(vector<int> a, int n, int k)
+// {
+//     if (n < 4)
+//     {
+//         return {{-1}};
+//     }
+//     if (n == 4)
+//     {
+//         if (a[1] + a[2] + a[3] + a[0] == k)
+//         {
+//             return {{a[0], a[1], a[2], a[3]}};
+//         }
+//     }
+//     vector<vector<int>> ans;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             for (int l = j + 1; l < n; l++)
+//             {
+//                 for (int m = l + 1; m < n; m++)
+//                 {
+//                     if (a[i] + a[j] + a[l] + a[m] == k)
+//                     {
+//                         ans.push_back({a[i], a[j], a[l], a[m]});
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a{0, 0, 2, 1, 1};
+//     int n = a.size();
+//     int k = 3;
+//     vector<vector<int>> ans = solve(a, n, k);
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         for (int j = 0; j < ans[0].size(); j++)
+//         {
+//             cout << ans[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+// vector<vector<int>> ThreeSum(vector<int> &a)
+// {
+//     vector<vector<int>> ans;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         for (int j = i + 1; j < a.size(); j++)
+//         {
+//             for (int k = j + 1; k < a.size(); k++)
+//             {
+//                 if (a[i] + a[j] + a[k] == 0)
+//                 {
+//                     ans.push_back({a[i], a[j], a[k]});
+//                 }
+//             }
+//         }
+//     }
+//     return ans;
+// }
+
+// vector<vector<int>> ThreeSum1(vector<int> &a)
+// {
+//     set<vector<int>> ans;
+//     sort(a.begin(), a.end());
+//     for (int i = 0; i < a.size() - 2; i++)
+//     {
+//         int j = i + 1;
+//         int k = a.size() - 1;
+//         while (j < k && j < a.size() && k > i)
+//         {
+//             int sum = a[i] + a[j] + a[k];
+//             if (sum == 0)
+//             {
+//                 vector<int> temp = {a[i], a[j], a[k]};
+//                 // sort(temp.begin(), temp.end());
+//                 ans.insert(temp);
+//                 j++, k--;
+//             }
+//             else if (sum < k)
+//             {
+//                 j++;
+//             }
+//             else
+//             {
+//                 k--;
+//             }
+//         }
+//     }
+//     return vector<vector<int>>(ans.begin(), ans.end());
+// }
+
+// int main()
+// {
+//     vector<int> a{-1, 0, 1, 2, -1, -4};
+//     vector<vector<int>> ans = ThreeSum1(a);
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         for (int j = 0; j < ans[i].size(); j++)
+//         {
+//             cout << ans[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
 
 // struct Node
 // {
