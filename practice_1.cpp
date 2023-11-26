@@ -1,6 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+vector<int> pattern(int N)
+{
+    vector<int> ans;
+    vector<int> start;
+    vector<int> end;
+    start.push_back(N);
+    end.insert(end.begin(), N);
+c:
+    if (N > 0)
+    {
+        N -= 5;
+        start.push_back(N);
+        end.insert(end.begin(), N);
+        goto c;
+    }
+    else
+    {
+        int i = 0;
+        int j = 1;
+        while (i < start.size() || j < end.size())
+        {
+            if (i < start.size())
+            {
+                ans.push_back(start[i++]);
+            }
+            else
+            {
+                ans.push_back(end[j++]);
+            }
+        }
+    }
+    return ans;
+}
+int main()
+{
+    for (auto i : pattern(16))
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
 // struct node
 // {
 //     node *left;
@@ -140,6 +183,7 @@ using namespace std;
 //         }
 //         return r;
 //     }
+
 //     void levelorder_newline()
 //     {
 //         if (this->root == NULL)
