@@ -1,34 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> pattern(int N)
+int LongestLengthN2(vector<int> &nums, int n)
 {
-    vector<int> ans;
-    vector<int> start;
-    vector<int> end;
-    start.push_back(N);
-    end.insert(end.begin(), N);
-c:
-    if (N > 0)
+    int ans = 0;
+    for (int i = 0; i < nums.size(); i++)
     {
-        N -= 5;
-        start.push_back(N);
-        end.insert(end.begin(), N);
-        goto c;
-    }
-    else
-    {
-        int i = 0;
-        int j = 1;
-        while (i < start.size() || j < end.size())
+        long long sum = nums[i];
+        for (int j = i + 1; j < nums.size(); j++)
         {
-            if (i < start.size())
+            sum += nums[j];
+            if (sum == 0)
             {
-                ans.push_back(start[i++]);
+                ans = max(ans, j - i + 1);
+            }
+        }
+    }
+    return ans;
+}
+int Longestlength(vector<int> &a, int n)
+{
+    int ans = 0;
+    int sum = 0;
+    unordered_map<int, int> mpp;
+    for (int i = 0; i < n; i++)
+    {
+        sum += a[i];
+        if (sum == 0)
+        {
+            ans = i + 1;
+        }
+        else
+        {
+            if (mpp.find(sum) != mpp.end())
+            {
+                ans = max(ans, i - mpp[sum]);
             }
             else
             {
-                ans.push_back(end[j++]);
+                mpp[sum] = i;
             }
         }
     }
@@ -36,13 +46,61 @@ c:
 }
 int main()
 {
-    for (auto i : pattern(16))
-    {
-        cout << i << " ";
-    }
-    cout << endl;
+    vector<int> a{
+        9,
+        -3,
+        3,
+        -1,
+        6,
+        -5,
+    };
+    int n = 6;
+    cout << LongestLengthN2(a, n);
     return 0;
 }
+
+// vector<int> pattern(int N)
+// {
+//     vector<int> ans;
+//     vector<int> start;
+//     vector<int> end;
+//     start.push_back(N);
+//     end.insert(end.begin(), N);
+// c:
+//     if (N > 0)
+//     {
+//         N -= 5;
+//         start.push_back(N);
+//         end.insert(end.begin(), N);
+//         goto c;
+//     }
+//     else
+//     {
+//         int i = 0;
+//         int j = 1;
+//         while (i < start.size() || j < end.size())
+//         {
+//             if (i < start.size())
+//             {
+//                 ans.push_back(start[i++]);
+//             }
+//             else
+//             {
+//                 ans.push_back(end[j++]);
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     for (auto i : pattern(16))
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
 
 // struct node
 // {
