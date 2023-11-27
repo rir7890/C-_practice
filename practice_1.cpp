@@ -1,63 +1,88 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int LongestLengthN2(vector<int> &nums, int n)
-{
-    int ans = 0;
-    for (int i = 0; i < nums.size(); i++)
-    {
-        long long sum = nums[i];
-        for (int j = i + 1; j < nums.size(); j++)
-        {
-            sum += nums[j];
-            if (sum == 0)
-            {
-                ans = max(ans, j - i + 1);
-            }
-        }
-    }
-    return ans;
-}
-int Longestlength(vector<int> &a, int n)
-{
-    int ans = 0;
-    int sum = 0;
-    unordered_map<int, int> mpp;
-    for (int i = 0; i < n; i++)
-    {
-        sum += a[i];
-        if (sum == 0)
-        {
-            ans = i + 1;
-        }
-        else
-        {
-            if (mpp.find(sum) != mpp.end())
-            {
-                ans = max(ans, i - mpp[sum]);
-            }
-            else
-            {
-                mpp[sum] = i;
-            }
-        }
-    }
-    return ans;
-}
-int main()
-{
-    vector<int> a{
-        9,
-        -3,
-        3,
-        -1,
-        6,
-        -5,
-    };
-    int n = 6;
-    cout << LongestLengthN2(a, n);
-    return 0;
-}
+// int subarray(vector<int> &nums, int k)
+// {
+//     int n = nums.size();
+//     int prefix = 0;
+//     int cnt = 0;
+//     unordered_map<int, int> mp;
+//     mp[0] = 1;
+//     for (int i = 0; i < n; i++)
+//     {
+//         prefix += nums[i];
+//         int remove = prefix - k;
+//         cnt += mp[remove];
+//         mp[prefix] += 1;
+//     }
+//     return cnt;
+// }
+// int main()
+// {
+//     vector<int> a{4, 2, 2, 6, 4};
+//     // int n = 6;
+//     int k = 4;
+//     cout << subarray(a, k);
+//     return 0;
+// }
+
+// int LongestLengthN2(vector<int> &nums, int n)
+// {
+//     int ans = 0;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         long long sum = nums[i];
+//         for (int j = i + 1; j < nums.size(); j++)
+//         {
+//             sum += nums[j];
+//             if (sum == 0)
+//             {
+//                 ans = max(ans, j - i + 1);
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int Longestlength(vector<int> &a, int n)
+// {
+//     int ans = 0;
+//     int sum = 0;
+//     unordered_map<int, int> mpp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += a[i];
+//         if (sum == 0)
+//         {
+//             ans = i + 1;
+//         }
+//         else
+//         {
+//             if (mpp.find(sum) != mpp.end())
+//             {
+//                 ans = max(ans, i - mpp[sum]);
+//             }
+//             else
+//             {
+//                 mpp[sum] = i;
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a{
+//         9,
+//         -3,
+//         3,
+//         -1,
+//         6,
+//         -5,
+//     };
+//     int n = 6;
+//     cout << LongestLengthN2(a, n);
+//     return 0;
+// }
 
 // vector<int> pattern(int N)
 // {
