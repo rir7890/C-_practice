@@ -1,43 +1,83 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Interval
+vector<int> mergeNotExtra(vector<int> v1, vector<int> v2)
 {
-    int start;
-    int end;
-};
-bool compare(Interval a, Interval b)
-{
-    return a.start < b.start;
-}
-vector<Interval> MergeInterval(vector<Interval> I, int n)
-{
-    vector<Interval> merged;
-    sort(I.begin(), I.end(), compare);
-    merged.push_back(I[0]);
-    for (int i = 1; i < n; i++)
+    int i = v1.size() - 1;
+    int j = 0;
+    while (i >= 0 && j < v2.size())
     {
-        if (merged.back().end >= I[i].start)
+        if (v1[i] > v2[j])
         {
-            merged.back().end = max(I[i].end, merged.back().end);
+            swap(v1[i--], v2[j++]);
         }
         else
         {
-            merged.push_back(I[i]);
+            break;
         }
     }
-    return merged;
+    sort(v1.begin(), v1.end());
+    sort(v2.begin(), v2.end());
+    vector<int> ans;
+    for (int i = 0; i < v1.size(); i++)
+    {
+        ans.push_back(v1[i]);
+    }
+    for (int i = 0; i < v2.size(); i++)
+    {
+        ans.push_back(v2[i]);
+    }
+    return ans;
 }
 int main()
 {
-    vector<Interval> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-    vector<Interval> mergedIntervals = MergeInterval(intervals, 4);
-    for (Interval interval : mergedIntervals)
+    vector<int> v1{0, 1, 2, 3};
+    vector<int> v2{5, 6, 7, 8, 9};
+    for (auto x : mergeNotExtra(v1, v2))
     {
-        cout << "[" << interval.start << ", " << interval.end << "]" << endl;
+        cout << x << " ";
     }
+    cout << endl;
     return 0;
 }
+
+// struct Interval
+// {
+//     int start;
+//     int end;
+// };
+// bool compare(Interval a, Interval b)
+// {
+//     return a.start < b.start;
+// }
+// vector<Interval> MergeInterval(vector<Interval> I, int n)
+// {
+//     vector<Interval> merged;
+//     sort(I.begin(), I.end(), compare);
+//     merged.push_back(I[0]);
+//     for (int i = 1; i < n; i++)
+//     {
+//         if (merged.back().end >= I[i].start)
+//         {
+//             merged.back().end = max(I[i].end, merged.back().end);
+//         }
+//         else
+//         {
+//             merged.push_back(I[i]);
+//         }
+//     }
+//     return merged;
+// }
+// int main()
+// {
+//     vector<Interval> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+//     vector<Interval> mergedIntervals = MergeInterval(intervals, 4);
+//     for (Interval interval : mergedIntervals)
+//     {
+//         cout << "[" << interval.start << ", " << interval.end << "]" << endl;
+//     }
+//     return 0;
+// }
 
 // int subarraysWithXorK(vector<int> &a, int k)
 // {
