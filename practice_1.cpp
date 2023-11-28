@@ -1,45 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> mergeNotExtra(vector<int> v1, vector<int> v2)
-{
-    int i = v1.size() - 1;
-    int j = 0;
-    while (i >= 0 && j < v2.size())
-    {
-        if (v1[i] > v2[j])
-        {
-            swap(v1[i--], v2[j++]);
-        }
-        else
-        {
-            break;
-        }
-    }
-    sort(v1.begin(), v1.end());
-    sort(v2.begin(), v2.end());
-    vector<int> ans;
-    for (int i = 0; i < v1.size(); i++)
-    {
-        ans.push_back(v1[i]);
-    }
-    for (int i = 0; i < v2.size(); i++)
-    {
-        ans.push_back(v2[i]);
-    }
-    return ans;
-}
-int main()
-{
-    vector<int> v1{0, 1, 2, 3};
-    vector<int> v2{5, 6, 7, 8, 9};
-    for (auto x : mergeNotExtra(v1, v2))
-    {
-        cout << x << " ";
-    }
-    cout << endl;
-    return 0;
-}
+// vector<int> mergeNotExtra(vector<int> v1, vector<int> v2)
+// {
+//     int i = v1.size() - 1;
+//     int j = 0;
+//     while (i >= 0 && j < v2.size())
+//     {
+//         if (v1[i] > v2[j])
+//         {
+//             swap(v1[i--], v2[j++]);
+//         }
+//         else
+//         {
+//             break;
+//         }
+//     }
+//     sort(v1.begin(), v1.end());
+//     sort(v2.begin(), v2.end());
+//     vector<int> ans;
+//     for (int i = 0; i < v1.size(); i++)
+//     {
+//         ans.push_back(v1[i]);
+//     }
+//     for (int i = 0; i < v2.size(); i++)
+//     {
+//         ans.push_back(v2[i]);
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> v1{0, 1, 2, 3};
+//     vector<int> v2{5, 6, 7, 8, 9};
+//     for (auto x : mergeNotExtra(v1, v2))
+//     {
+//         cout << x << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
 
 // struct Interval
 // {
