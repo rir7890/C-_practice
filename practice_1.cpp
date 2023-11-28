@@ -1,6 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Interval
+{
+    int start;
+    int end;
+};
+bool compare(Interval a, Interval b)
+{
+    return a.start < b.start;
+}
+vector<Interval> MergeInterval(vector<Interval> I, int n)
+{
+    vector<Interval> merged;
+    sort(I.begin(), I.end(), compare);
+    merged.push_back(I[0]);
+    for (int i = 1; i < n; i++)
+    {
+        if (merged.back().end >= I[i].start)
+        {
+            merged.back().end = max(I[i].end, merged.back().end);
+        }
+        else
+        {
+            merged.push_back(I[i]);
+        }
+    }
+    return merged;
+}
+int main()
+{
+    vector<Interval> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+    vector<Interval> mergedIntervals = MergeInterval(intervals, 4);
+    for (Interval interval : mergedIntervals)
+    {
+        cout << "[" << interval.start << ", " << interval.end << "]" << endl;
+    }
+    return 0;
+}
+
 // int subarraysWithXorK(vector<int> &a, int k)
 // {
 //     int n = a.size();
