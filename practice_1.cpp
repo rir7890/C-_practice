@@ -1,6 +1,88 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int merge(int a[], int temp[], int left, int mid, int right)
+// {
+//     int i, j, k;
+//     int count = 0;
+//     i = left;
+//     j = mid;
+//     k = left;
+//     while (i < mid && j <= right)
+//     {
+//         if (a[i] <= a[j])
+//         {
+//             temp[k++] = a[i++];
+//         }
+//         else
+//         {
+//             temp[k++] = a[j++];
+//             count += (mid - i);
+//         }
+//     }
+//     while (i < mid)
+//     {
+//         temp[k++] = a[i++];
+//     }
+//     while (j <= right)
+//     {
+//         temp[k++] = a[j++];
+//     }
+//     for (i = left; i <= right; i++)
+//     {
+//         a[i] = temp[i];
+//     }
+//     return count;
+// }
+// int _mergeSort(int a[], int temp[], int left, int right)
+// {
+//     int mid;
+//     int count = 0;
+//     if (left < right)
+//     {
+//         mid = (left + right) / 2;
+//         count += _mergeSort(a, temp, left, mid);
+//         count += _mergeSort(a, temp, mid + 1, right);
+//         count += merge(a, temp, left, mid, right);
+//     }
+//     return count;
+// }
+// int mergeSort(int a[], int n)
+// {
+//     int temp[n];
+//     return _mergeSort(a, temp, 0, n - 1);
+// }
+// int main()
+// {
+//     int a[] = {2, 4, 1, 3, 5};
+//     int n = sizeof(a) / sizeof(a[0]);
+//     cout << mergeSort(a, n);
+//     return 0;
+// }
+
+// int RepeatAndMissing(vector<int> &a)
+// {
+//     int n = a.size();
+//     int preSum = (n * (n + 1)) / 2;
+//     unordered_map<int, int> mp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         mp[a[i]]++;
+//     }
+//     int sum = 0;
+//     for (auto it = mp.begin(); it != mp.end(); it++)
+//     {
+//         sum += it->first;
+//     }
+//     return preSum - sum;
+// }
+// int main()
+// {
+//     vector<int> a{3, 1, 2, 5, 4, 6, 7, 5};
+//     cout << RepeatAndMissing(a);
+//     return 0;
+// }
+
 // vector<int> mergeNotExtra(vector<int> v1, vector<int> v2)
 // {
 //     int i = v1.size() - 1;
