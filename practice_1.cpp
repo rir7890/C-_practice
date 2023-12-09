@@ -1,6 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int pyramidSum(int array_length, vector<int> arr)
+{
+    int n = array_length;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            arr[j] = arr[j] + arr[j + 1];
+            // cout << arr[j] << " ";
+        }
+        // cout << endl;
+    }
+    return arr[0];
+}
+int main()
+{
+    vector<int> a{1, 2, 3, 4, 5};
+    int n = a.size();
+    int result = pyramidSum(n, a);
+    cout << result << "\n";
+    return 0;
+}
+
 // int checkPrime(int n)
 // {
 //     if (n == 1)
