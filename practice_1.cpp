@@ -1,6 +1,190 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int checkPrime(int n)
+// {
+//     if (n == 1)
+//     {
+//         return 0;
+//     }
+//     if (n == 2)
+//     {
+//         return 1;
+//     }
+//     for (int i = 2; i <= sqrt(n); i++)
+//     {
+//         if (n % i == 0)
+//         {
+//             return 0;
+//         }
+//     }
+//     return 1;
+// }
+// int sumDigit(int n)
+// {
+//     int sum = 0;
+//     while (n)
+//     {
+//         int r = n % 10;
+//         sum += r;
+//         n /= 10;
+//     }
+//     return sum;
+// }
+// int sumDigit(int n)
+// {
+//     if (n == 2)
+//     {
+//         return 0;
+//     }
+//     vector<int> v;
+//     for (int i = 2; i < n; i++)
+//     {
+//         int temp = n;
+//         int t = checkPrime(i);
+//         if (t == 1)
+//         {
+//             while (temp % i == 0 && temp > 0)
+//             {
+//                 v.push_back(i);
+//                 temp /= i;
+//             }
+//         }
+//     }
+//     int s = v.size();
+//     int sum2 = 0;
+//     for (int i = 0; i < s; i++)
+//     {
+//         sum2 += sumDigit(v[i]);
+//     }
+//     int sum = sumDigit(n);
+//     if (sum == sum2)
+//     {
+//         return 1;
+//     }
+//     return 0;
+// }
+
+// bool checkPrime(int n)
+// {
+//     if (n == 1)
+//     {
+//         return false;
+//     }
+//     if (n == 2)
+//     {
+//         return true;
+//     }
+//     for (int i = 2; i <= sqrt(n); i++)
+//     {
+//         if (n % i == 0)
+//             return false;
+//     }
+//     return true;
+// }
+// int sumDigit(int n)
+// {
+//     int sum = 0;
+//     while (n > 0)
+//     {
+//         int r = n % 10;
+//         sum += r;
+//         n /= 10;
+//     }
+//     return sum;
+// }
+// int smithSum(int n)
+// {
+//     if (n == 2)
+//     {
+//         return 0;
+//     }
+//     vector<int> v;
+//     for (int i = 2; i < n; i++)
+//     {
+//         int temp = n;
+//         int t = checkPrime(i);
+//         if (t == 1)
+//         {
+//             while (temp % i == 0 && temp > 0)
+//             {
+//                 v.push_back(i);
+//                 temp /= i;
+//             }
+//         }
+//     }
+//     int s = v.size();
+//     int sum2 = 0;
+//     for (int i = 0; i < s; i++)
+//     {
+//         sum2 += sumDigit(v[i]);
+//     }
+//     int sum = sumDigit(n);
+//     if (sum == sum2)
+//     {
+//         return 1;
+//     }
+//     return 0;
+// }
+
+// string primeFactors(int n)
+// {
+//     string ans = "";
+//     while (n % 2 == 0)
+//     {
+//         ans += to_string(2);
+//         n /= 2;
+//     }
+//     cout << n << endl;
+//     for (int i = 3; i <= (n / 2); i = i + 2)
+//     {
+//         if (n % i == 0)
+//         {
+//             ans += to_string(i);
+//             n /= i;
+//         }
+//     }
+//     cout << ans + to_string(n) << endl;
+// }
+// int main()
+// {
+//     primeFactors(666 * 3);
+//     return 0;
+// }
+
+// int countSubarrayInRange(vector<int> a, int L, int R)
+// {
+//     int ans = 0;
+//     int n = a.size();
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = i; j < n; j++)
+//         {
+//             int c = 0;
+//             for (int k = i; k <= j; k++)
+//             {
+//                 if (a[k] >= L && a[k] <= R)
+//                 {
+//                     c++;
+//                 }
+//             }
+//             if (c == j + 1)
+//             {
+//                 ans++;
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a{2, 0, 11, 3, 0};
+//     int L = 1;
+//     int R = 10;
+//     cout << countSubarrayInRange(a, L, R);
+//     return 0;
+// }
+
 // int merge(int a[], int temp[], int left, int mid, int right)
 // {
 //     int i, j, k;
