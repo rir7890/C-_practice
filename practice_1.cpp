@@ -1,28 +1,205 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int pyramidSum(int array_length, vector<int> arr)
-{
-    int n = array_length;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n - 1 - i; j++)
-        {
-            arr[j] = arr[j] + arr[j + 1];
-            // cout << arr[j] << " ";
-        }
-        // cout << endl;
-    }
-    return arr[0];
-}
-int main()
-{
-    vector<int> a{1, 2, 3, 4, 5};
-    int n = a.size();
-    int result = pyramidSum(n, a);
-    cout << result << "\n";
-    return 0;
-}
+// int binarSearch(vector<int> &a, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = n + 1;
+//     while (low <= high)
+//     {
+//         int mid = low + (high - low) / 2;
+//         if (a[mid] >= x)
+//         {
+//             ans = mid;
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return ans;
+// }
+// vector<int> searchInsert(vector<int> &a, int n, int x)
+// {
+//     int index = binarSearch(a, n, x);
+//     if (a[index] == x)
+//     {
+//         return a;
+//     }
+//     vector<int> ans;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (a[i] == index)
+//         {
+//             ans.push_back(x);
+//         }
+//         ans.push_back(a[i]);
+//     }
+//     return ans;
+// }
+
+// int upperBound(vector<int> arr, int n, int x)
+// {
+//     int low = 0, high = n - 1;
+//     int ans = n;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         // maybe an answer
+//         if (arr[mid] > x)
+//         {
+//             ans = mid;
+//             // look for smaller index on the left
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1; // look on the right
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> arr = {1, 2, 2, 3};
+//     int n = 5, x = 2;
+//     int ind = upperBound(arr, n, x);
+//     cout << ind << "\n";
+//     return 0;
+// }
+
+// int findValue(int Xcount, vector<int> X, int Ycount, vector<int> Y, int Zcount, vector<int> Z)
+// {
+//     int j = 0;
+//     int i = 0;
+//     int k = 0;
+//     int ans = 0;
+//     while (j < Ycount)
+//     {
+//         while (i < Xcount || k < Zcount)
+//         {
+//             ans += (Y[j] - X[i]) * (Y[j] - Z[k]);
+//             if (i + 1 != Xcount)
+//             {
+//                 i++;
+//             }
+//             if (k + 1 != Zcount)
+//             {
+//                 k++;
+//             }
+//         }
+//         j++;
+//         i = 0;
+//         k = 0;
+//     }
+//     cout << ans << endl;
+//     return ans;
+// }
+// int main()
+// {
+//     int Xcount;
+//     cin >> Xcount;
+//     vector<int> X(Xcount);
+//     for (int j = 0; j < Xcount; j++)
+//     {
+//         cin >> X[j];
+//     }
+//     int Ycount;
+//     cin >> Ycount;
+//     vector<int> Y(Ycount);
+//     for (int j = 0; j < Ycount; j++)
+//     {
+//         cin >> Y[j];
+//     }
+//     int Zcount;
+//     cin >> Zcount;
+//     vector<int> Z(Zcount);
+//     for (int j = 0; j < Zcount; j++)
+//     {
+//         cin >> Z[j];
+//     }
+//     int result;
+//     result = findValue(Xcount, X, Ycount, Y, Zcount, Z);
+//     cout << result;
+//     return 0;
+// }
+
+// int findValue(int Xcount, vector<int> X, int Ycount, vector<int> Y, int Zcount, vector<int> Z)
+// {
+//     if (Xcount == 0 || Ycount == 0 || Zcount == 0)
+//     {
+//         return 0;
+//     }
+//     int ans = 0;
+//     int i = 0;
+//     int j = 0;
+//     int k = 0;
+//     while (i < Ycount && j < Xcount && k < Zcount)
+//     {
+//         ans += (Y[i] - X[j]) * (Y[i] - Z[k]);
+//         i++;
+//     }
+//     return ans;
+// }
+
+// int BS(vector<int> a, int n, int x)
+// {
+//     int mid;
+//     int low = 0;
+//     int high = a.size() - 1;
+//     while (low <= high)
+//     {
+//         mid = low + (high - low) / 2;
+//         if (a[mid] == x)
+//         {
+//             return mid;
+//         }
+//         else if (a[mid] < x)
+//         {
+//             low = mid + 1;
+//         }
+//         else if (a[mid] > x and a[mid + 1] < x)
+//         {
+//             return mid;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return -1;
+// }
+// int main()
+// {
+//     vector<int> a{13, 5, 8, 15, 19};
+//     cout << BS(a, a.size(), 15);
+//     return 0;
+// }
+
+// int pyramidSum(int array_length, vector<int> arr)
+// {
+//     int n = array_length;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n - 1 - i; j++)
+//         {
+//             arr[j] = arr[j] + arr[j + 1];
+//             // cout << arr[j] << " ";
+//         }
+//         // cout << endl;
+//     }
+//     return arr[0];
+// }
+// int main()
+// {
+//     vector<int> a{1, 2, 3, 4, 5};
+//     int n = a.size();
+//     int result = pyramidSum(n, a);
+//     cout << result << "\n";
+//     return 0;
+// }
 
 // int checkPrime(int n)
 // {
