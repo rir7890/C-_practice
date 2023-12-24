@@ -1,6 +1,287 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int KthMissing(vector<int> &a, int k)
+// {
+//     int n = a[a.size() - 1];
+//     unordered_set<int> s;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         s.insert(a[i]);
+//     }
+//     int cnt = 0;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         if (s.find(i) == s.end())
+//         {
+//             cnt++;
+//             if (cnt == k)
+//             {
+//                 return i;
+//             }
+//         }
+//     }
+//     return -1;
+// }
+// int main()
+// {
+//     vector<int> a{2, 3, 5, 9, 10};
+//     int k = 4;
+//     cout << KthMissing(a, k) << endl;
+//     return 0;
+// }
+
+// int findSum(vector<int> &a)
+// {
+//     int sum = 0;
+//     for (auto i : a)
+//     {
+//         sum += i;
+//     }
+//     return sum;
+// }
+// bool DaysFind(vector<int> &a, int n, int d, int mid)
+// {
+//     int Cday = 1;
+//     int ans = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (ans + a[i] > mid)
+//         {
+//             Cday += 1;
+//             ans = a[i];
+//         }
+//         else
+//             ans += a[i];
+//     }
+//     return (Cday <= d) ? true : false;
+// }
+// int shipping(int n, vector<int> &a, int d)
+// {
+//     int low = 1;
+//     int high = findSum(a);
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (DaysFind(a, n, d, mid))
+//         {
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return low;
+// }
+// int main()
+// {
+//     vector<int> a{5, 4, 5, 2, 3, 4, 5, 6};
+//     int n = a.size();
+//     int d = 5;
+//     cout << shipping(n, a, d);
+//     return 0;
+// }
+
+// bool check(int b, vector<int> &v, int h)
+// {
+//     int hours = 0;
+//     for (int i = 0; i < v.size(); i++)
+//     {
+//         hours += ceil(v[i] / b);
+//     }
+//     if (hours == h)
+//     {
+//         return 1;
+//     }
+//     return 0;
+// }
+// int KokoEats(vector<int> &a, int h, int n)
+// {
+//     int sum = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += a[i];
+//     }
+//     int low = 1;
+//     int high = sum;
+//     int ans = 0;
+//     while (low <= high)
+//     {
+//         int b = (low + high) / 2;
+//         int c = check(b, a, h);
+//         if (c)
+//         {
+//             ans = max(ans, b);
+//             cout << ans << endl;
+//             low = b + 1;
+//             // return b;
+//         }
+//         else
+//         {
+//             high = b - 1;
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a{25, 12, 8, 14, 19};
+//     int h = 5;
+//     int n = a.size();
+//     cout << KokoEats(a, h, n);
+//     return 0;
+// }
+
+// int singleOneELement(vector<int> &arr, int n)
+// {
+//     if (n == 1)
+//     {
+//         return arr[0];
+//     }
+//     if (arr[0] != arr[1])
+//     {
+//         return arr[0];
+//     }
+//     if (arr[n - 1] != arr[n - 2])
+//     {
+//         return arr[n - 1];
+//     }
+//     int low = 1;
+//     int high = n - 2;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (arr[mid] != arr[mid - 1] && arr[mid] != arr[mid + 1])
+//         {
+//             return arr[mid];
+//         }
+//         if ((mid % 2 == 0 && arr[mid] == arr[mid + 1]) || (mid % 2 == 1 && arr[mid] == arr[mid - 1]))
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return -1;
+// }
+
+// int lowerbound(vector<int> &a, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = n;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] == x)
+//         {
+//             ans = mid;
+//             high = mid - 1;
+//         }
+//         else if (a[mid] > x)
+//         {
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return ans;
+// }
+// int upperbound(vector<int> &a, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = n;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] == x)
+//         {
+//             ans = mid;
+//             low = mid + 1;
+//         }
+//         else if (a[mid] > x)
+//         {
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a{2, 2, 3, 3, 3, 3, 4};
+//     int n = a.size();
+//     int x = 2;
+//     int first = lowerbound(a, n, x);
+//     int last = upperbound(a, n, x);
+//     cout << (last - first) + 1 << endl;
+//     return 0;
+// }
+
+// int findCiel(vector<int> &a, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = -1;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] >= x)
+//         {
+//             ans = mid;
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return ans;
+// }
+// int FindFloor(vector<int> &a, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = -1;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] <= x)
+//         {
+//             ans = mid;
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return ans;
+// }
+// void FirstAndLastOccurence(vector<int> &arr, int n, int x)
+// {
+//     int first = FindFloor(arr, n, x);
+//     int last = findCiel(arr, n, x);
+//     cout << first << " " << last << endl;
+// }
+// int main()
+// {
+//     vector<int> a{2, 4, 6, 8, 8, 8, 11, 13};
+//     int n = a.size();
+//     int x = 8;
+//     FirstAndLastOccurence(a, n, x);
+//     return 0;
+// }
+
 // int binarSearch(vector<int> &a, int n, int x)
 // {
 //     int low = 0;
