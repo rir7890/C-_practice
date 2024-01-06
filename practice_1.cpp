@@ -1,6 +1,169 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int func(int n)
+// {
+//     int count = 0;
+//     unordered_map<int, int> mp;
+//     for (int i = 2; i * i <= n; i++)
+//     {
+//         while (n % i == 0)
+//         {
+//             mp[i]++;
+//             n = n / i;
+//         }
+//     }
+//     if (n > 1)
+//     {
+//         mp[n]++;
+//     }
+//     for (auto x : mp)
+//     {
+//         count += x.second;
+//     }
+//     return count;
+// }
+// int suOfPower(int a,int b){
+//     int sum=0;
+//     for(int i=a;i<=b;i++){
+//         sum+=func(i);
+//     }
+//     return sum;
+// }
+
+// int findMin(vector<int> &a)
+// {
+//     int mini = INT_MAX;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         mini = min(mini, a[i]);
+//     }
+//     return mini;
+// }
+// int SumArray(vector<int> &a)
+// {
+//     int sum = 0;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         sum += a[i];
+//     }
+//     return sum;
+// }
+// bool check(vector<int> &a, int mid, int k)
+// {
+//     int cnt = 1;
+//     int sum = 0;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         if (sum + a[i] > mid)
+//         {
+//             cnt++;
+//             sum = a[i];
+//         }
+//         else
+//         {
+//             sum += a[i];
+//         }
+//         if (cnt > k)
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+// int splitArray(vector<int> &a, int n, int k)
+// {
+//     int low = findMin(a);
+//     int high = SumArray(a);
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (check(a, mid, k))
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return low;
+// }
+// int main()
+// {
+//     vector<int> a{1, 2, 3, 4, 5};
+//     int k = 3;
+//     int n = a.size();
+//     cout << splitArray(a, n, k);
+//     return 0;
+// }
+
+// int findSum(vector<int> &a)
+// {
+//     int sum = 0;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         sum += a[i];
+//     }
+//     return sum;
+// }
+// bool check(vector<int> &a, int mid, int k)
+// {
+//     int cnt = 1;
+//     int sum = 0;
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         if (sum + a[i] <= mid)
+//         {
+//             sum += a[i];
+//         }
+//         else
+//         {
+//             cnt++;
+//             sum = a[i];
+//         }
+//         if (cnt > k)
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+// int splitArray(vector<int> &a, int n, int k)
+// {
+//     int low = 1;
+//     int high = findSum(a);
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (check(a, mid, k))
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return low;
+// }
+// int main()
+// {
+//     vector<int> a{1, 2, 3, 4, 5};
+//     int n = 5;
+//     int k = 3;
+//     cout << splitArray(a, n, k);
+//     return 0;
+// }
+
+// int main()
+// {
+//     string a = "abc";
+//     string b = "bac";
+//     cout << (a < b) << endl;
+//     return 0;
+// }
+
 // int KthMissing(vector<int> &a, int k)
 // {
 //     int n = a[a.size() - 1];
