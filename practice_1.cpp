@@ -1,6 +1,177 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// int sumofSubArray(vector<int> &a, int n, int k)
+// {
+//     unordered_map<int, int> um;
+//     int mod_arr[n];
+//     int sum = 0;
+//     int max_len = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += a[i];
+//         mod_arr[i] = ((sum % k) + k) % k;
+//         if (mod_arr[i] == 0)
+//         {
+//             max_len = i + 1;
+//         }
+//         else if (um.find(mod_arr[i]) == um.end())
+//         {
+//             um[mod_arr[i]] = i;
+//         }
+//         else
+//         {
+//             if (max_len < (i - um[mod_arr[i]]))
+//             {
+//                 max_len = i - um[mod_arr[i]];
+//             }
+//         }
+//     }
+//     return max_len;
+// }
+// int main()
+// {
+//     return 0;
+// }
+
+// vector<int> BFKmp(string text, string pat)
+// {
+//     vector<int> ans;
+//     for (int i = 0; i < text.length(); i++)
+//     {
+//         int cnt = 0;
+//         for (int j = 0; j < pat.length(); j++)
+//         {
+//             if (pat[j] == text[i + j])
+//             {
+//                 cnt++;
+//             }
+//             if (cnt == pat.size())
+//             {
+//                 ans.push_back(i + 1);
+//             }
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     for (auto x : BFKmp("hellololoololl", "ol"))
+//     {
+//         cout << x << endl;
+//     }
+//     return 0;
+// }
+
+// vector<int> search(string pat, string txt)
+// {
+//     vector<int> indices;
+//     int post = txt.find(pat);
+//     // cout << post << endl;
+//     while (post != string::npos)
+//     {
+//         indices.push_back(post + 1);
+//         post = txt.find(pat, post + 1);
+//     }
+//     return indices;
+// }
+// int main()
+// {
+//     search("ol", "heoollooolol");
+//     return 0;
+// }
+
+// int findMin(vector<int> &b)
+// {
+//     int mini = INT_MAX;
+//     for (auto x : b)
+//     {
+//         mini = min(mini, x);
+//     }
+//     return mini;
+// }
+// int findSum(vector<int> &b)
+// {
+//     int sum = 0;
+//     for (int i = 0; i < b.size(); i++)
+//     {
+//         sum += b[i];
+//     }
+//     return sum;
+// }
+// bool check(vector<int> &b, int mid, int k)
+// {
+//     int cnt = 1;
+//     int sum = 0;
+//     for (int i = 0; i < b.size(); i++)
+//     {
+//         if (sum + b[i] > mid)
+//         {
+//             cnt++;
+//             sum = b[i];
+//         }
+//         else
+//         {
+//             sum += b[i];
+//         }
+//         if (cnt > k)
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+// int painterProblem(vector<int> &board, int n, int k)
+// {
+//     int low = findMin(board);
+//     int high = findSum(board);
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (check(board, mid, k))
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return low;
+// }
+// int main()
+// {
+//     vector<int> b{10, 20, 30, 40};
+//     int k = 2;
+//     cout << painterProblem(b, b.size(), k) << endl;
+//     return 0;
+// }
+
+// int func(int n)
+// {
+//     // This function gives the user number,
+//     // This numbers are the prime factors of the 'n' number and it also provides the power of their factors
+//     int count = 0;
+//     unordered_map<int, int> mp;
+//     for (int i = 2; i * i <= n; i++)
+//     {
+//         while (n % i == 0)
+//         {
+//             mp[i]++;
+//             n = n / i;
+//         }
+//     }
+//     if (n > 1)
+//     {
+//         mp[n]++;
+//     }
+//     for (auto x : mp)
+//     {
+//         count += x.second;
+//     }
+//     return count;
+// }
+
 // int func(int n)
 // {
 //     int count = 0;
