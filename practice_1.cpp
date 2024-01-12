@@ -1,6 +1,186 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// queue<int> modifyQueue(queue<int> &q, int k)
+// {
+//     stack<int> st;
+//     int n = q.size();
+//     for (int i = 0; i < k; i++)
+//     {
+//         st.push(q.front());
+//         q.pop();
+//     }
+//     while (!st.empty())
+//     {
+//         q.push(st.top());
+//         st.pop();
+//     }
+//     for (int i = k; i < n; i++)
+//     {
+//         int x = q.front();
+//         q.pop();
+//         q.push(x);
+//     }
+//     return q;
+// }
+// int main()
+// {
+//     queue<int> q;
+//     q.push(1);
+//     q.push(2);
+//     q.push(3);
+//     q.push(4);
+//     q.push(5);
+//     queue<int> q1 = modifyQueue(q, 3);
+//     q.swap(q1);
+//     while (!q.empty())
+//     {
+//         std::cout << q.front() << "\n";
+//         q.pop();
+//     }
+//     return 0;
+// }
+
+// float medianOfTwoSorted(vector<int> &a1, vector<int> &a2)
+// {
+//     int i = 0;
+//     int j = 0;
+//     vector<int> ans;
+//     while (i < a1.size() && j < a2.size())
+//     {
+//         if (a1[i] <= a2[j])
+//         {
+//             ans.push_back(a1[i++]);
+//         }
+//         else
+//         {
+//             ans.push_back(a2[j++]);
+//         }
+//     }
+//     while (i < a1.size())
+//     {
+//         ans.push_back(a1[i++]);
+//     }
+//     while (j < a2.size())
+//     {
+//         ans.push_back(a2[j++]);
+//     }
+//     int sum = 0;
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         sum += ans[i];
+//     }
+//     // for (auto x : ans)
+//     // {
+//     //     cout << x << endl;
+//     // }
+//     // cout << float(sum) / float(ans.size()) << endl;
+//     return float(sum) / float(ans.size());
+// }
+// int main()
+// {
+//     vector<int> a1{2, 4, 6};
+//     vector<int> a2{1, 3, 5};
+//     cout << medianOfTwoSorted(a1, a2) << endl;
+//     return 0;
+// }
+
+// string removeKDigits(string S, int K)
+// {
+//     stack<char> st;
+//     if (S.length() <= K)
+//     {
+//         return "0";
+//     }
+//     for (int i = 0; i < S.length(); i++)
+//     {
+//         if (st.size() > 0 && st.top() > S[i] && K > 0)
+//         {
+//             while (st.size() > 0 && st.top() > S[i] && K > 0)
+//             {
+//                 st.pop();
+//                 K--;
+//             }
+//         }
+//         if (st.size() == 0)
+//         {
+//             if (S[i] != '0')
+//             {
+//                 st.push(S[i]);
+//             }
+//             else
+//             {
+//                 st.push(S[i]);
+//             }
+//         }
+//     }
+//     while (K > 0 && st.size() > 0)
+//     {
+//         st.pop();
+//         K--;
+//     }
+//     string res;
+//     while (st.size() > 0)
+//     {
+//         res.push_back(st.top());
+//         st.pop();
+//     }
+//     reverse(res.begin(), res.end());
+//     if (res.size() == 0)
+//         return "0";
+//     return res;
+// }
+
+// string removeKdigits(string S, int K)
+// {
+//     stack<char> s;
+//     if ((S[0] - '0') == 0)
+//     {
+//         return "zero contain at the start of the string";
+//     }
+//     for (int i = 0; i < S.length(); i++)
+//     {
+//         if (s.empty())
+//         {
+//             s.push(S[i]);
+//         }
+//         if ((S[i] - '0') == 0 && !s.empty())
+//         {
+//             s.pop();
+//             K--;
+//             if (K == 0)
+//             {
+//                 break;
+//             }
+//         }
+//         else if ((S[i] - '0') == 0 && s.empty())
+//         {
+//             continue;
+//         }
+//         else if ((S[i] - '0') > s.top())
+//         {
+//             K--;
+//             if (K == 0)
+//             {
+//                 break;
+//             }
+//         }
+//     }
+//     string ans = "";
+//     while (!s.empty())
+//     {
+//         ans = s.top() + ans;
+//         s.pop();
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     string s = "1002991";
+//     cout << removeKdigits(s, 3) << endl;
+//     return 0;
+// }
+
 // int sumofSubArray(vector<int> &a, int n, int k)
 // {
 //     unordered_map<int, int> um;
