@@ -1,6 +1,342 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int main()
+{
+    return 0;
+}
+
+// int lowerBound(vector<int> arr, int n, int x)
+// {
+//     int low = 0;
+//     int high = n - 1;
+//     int ans = n;
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] >= x)
+//         {
+//             ans = mid;
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return ans;
+// }
+// int rowWithMax1s(vector<vector<int>> &matrix, int n, int m)
+// {
+//     int cnt_max = 0;
+//     int index = -1;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int cnt_ones = m - lowerBound(matrix[i], m, 1);
+//         if (cnt_ones > cnt_max)
+//         {
+//             cnt_max = cnt_ones;
+//             index = i;
+//         }
+//     }
+//     return index;
+// }
+
+// int lengthOfOnes(vector<int> a, int low, int high)
+// {
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (a[mid] == 1 and a[mid - 1] == 0)
+//         {
+//             return mid;
+//         }
+//         else if (a[mid] == 1 and a[mid - 1] == 1)
+//         {
+//             high = mid - 1;
+//         }
+//         else
+//         {
+//             low = mid + 1;
+//         }
+//     }
+//     return 0;
+// }
+// int rowWithMax1s(vector<vector<int>> &a, int n, int m)
+// {
+//     int ans = -1;
+//     int count = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int l = m - lengthOfOnes(a[i], 0, m);
+//         if (l == 0)
+//             continue;
+//         if (count < l)
+//         {
+//             count = l;
+//             ans = i;
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<vector<int>> a{{0, 0, 0}, {0, 0, 1}, {0, 0, 0}};
+//     cout << rowWithMax1s(a, 3, 3) << endl;
+//     return 0;
+// }
+
+// int rowWithMax1s(vector<vector<int>> &matrix, int n, int m)
+// {
+//     int cnt_max = 0;
+//     int index = -1;
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//         int cnt_one = 0;
+//         for (int j = 0; j < matrix[0].size(); j++)
+//         {
+//             if (matrix[i][j] == 1)
+//             {
+//                 cnt_one++;
+//             }
+//         }
+//         if (cnt_one > cnt_max)
+//         {
+//             cnt_max = cnt_one;
+//             index = i;
+//         }
+//     }
+//     return index;
+// }
+
+// int countGroups(int position, int previous_sum, int length, string &str)
+// {
+//     if (position == length)
+//     {
+//         return 1;
+//     }
+//     int sum = 0;
+//     int res = 0;
+//     for (int i = 0; i < length; i++)
+//     {
+//         sum += (str[i] - '0');
+//         if (sum >= previous_sum)
+//         {
+//             res += countGroups(i + 1, sum, length, str);
+//         }
+//     }
+//     return res;
+// }
+// int answer(string str)
+// {
+//     int n = str.length();
+//     return countGroups(0, 0, n, str);
+// }
+
+// long long findNthNumber(int n, int k)
+// {
+//     long long num = 0;
+//     int curr = 1;
+//     while (curr < n)
+//     {
+//         num++;
+//         if (__builtin_popcount(num) <= k)
+//         {
+//             curr++;
+//         }
+//     }
+//     return num;
+// }
+// int main()
+// {
+//     cout << findNthNumber(5, 1);
+//     return 0;
+// }
+
+// int f(vector<int> &arr, int i, int j, vector<vector<int>> &dp)
+// {
+//     if (i == j)
+//     {
+//         return 0;
+//     }
+//     if (dp[i][j] != -1)
+//     {
+//         return dp[i][j];
+//     }
+//     dp[i][j] = INT_MAX;
+//     for (int k = i; k < j; k++)
+//     {
+//         dp[i][j] = min(dp[i][j], f(arr, i, k, dp) + f(arr, k + 1, j, dp) + arr[i - 1] * arr[k] * arr[j]);
+//     }
+//     return dp[i][j];
+// }
+// int matrixMultiplication(vector<int> &arr, int N)
+// {
+//     vector<vector<int>> dp(N, vector<int>(N, -1));
+//     int i = 1;
+//     int j = N - 1;
+//     return f(arr, i, j, dp);
+// }
+// int main()
+// {
+//     vector<int> arr = {1, 2, 3, 4};
+//     int n = arr.size();
+//     cout << matrixMultiplication(arr, n) << endl;
+//     return 0;
+// }
+
+// class Graph
+// {
+// public:
+//     int V;
+//     list<int> *adj;
+//     bool *visited;
+//     bool isCyclicUtil(int v, bool visited[], int parent);
+//     Graph(int V);
+//     void addEdge(int v, int w);
+//     bool Iscyclic();
+// };
+// Graph::Graph(int V)
+// {
+//     this->V = V;
+//     adj = new list<int>[this->V];
+//     visited = new bool[this->V];
+// }
+// void Graph::addEdge(int v, int w)
+// {
+//     adj[v].push_back(w);
+//     adj[w].push_back(v);
+// }
+// bool Graph::isCyclicUtil(int v, bool visited[], int parent)
+// {
+//     visited[v] = true;
+//     for (auto i = adj[v].begin(); i != adj[v].end(); i++)
+//     {
+//         if (!visited[*i])
+//         {
+//             if (isCyclicUtil(*i, visited, v))
+//             {
+//                 return true;
+//             }
+//         }
+//         else if (*i != parent)
+//         {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+// bool Graph::Iscyclic()
+// {
+//     for (int i = 0; i < this->V; i++)
+//     {
+//         visited[i] = false;
+//     }
+//     for (int i = 0; i < this->V; i++)
+//     {
+//         if (!visited[i])
+//         {
+//             if (isCyclicUtil(i, visited, -1))
+//             {
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
+// int isTree(int n, int m, vector<vector<int>> &adj)
+// {
+//     Graph g(n);
+//     for (int i = 0; i < m; i++)
+//     {
+//         g.addEdge(adj[i][0], adj[i][1]);
+//     }
+//     if (g.Iscyclic())
+//     {
+//         return false;
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (!g.visited[i])
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// int main()
+// {
+//     vector<vector<int>> adj = {{0, 1}, {1, 2}, {2, 0}};
+//     int n = 4;
+//     int m = 3;
+//     cout << isTree(n, m, adj) << endl;
+//     return 0;
+// }
+// class Solution
+// {
+// public:
+//     bool dfs(int node, int par, vector<int> adj[], vector<int> &vis)
+//     {
+//         vis[node] = 1;
+//         for (auto it : adj[node])
+//         {
+//             if (!vis[it])
+//             {
+//                 if (!dfs(it, node, adj, vis))
+//                     return false;
+//             }
+//             else if (it != par)
+//                 return false;
+//         }
+//         return true;
+//     }
+//     int isTree(int n, int m, vector<vector<int>> &edges)
+//     {
+//         vector<int> adj[n];
+//         for (auto it : edges)
+//         {
+//             adj[it[0]].push_back(it[1]);
+//             adj[it[1]].push_back(it[0]);
+//         }
+//         vector<int> vis(n, 0);
+//         bool fg = dfs(0, -1, adj, vis);
+//         for (int i = 0; i < n; i++)
+//         {
+//             if (!vis[i])
+//                 return false;
+//         }
+//         return fg;
+//     }
+// };
+
+// struct Node
+// {
+//     int key;
+//     Node *left, *right;
+// };
+// Node *newNode(int key)
+// {
+//     Node *t = new Node;
+//     t->key = key;
+//     t->left = t->right = nullptr;
+//     return t;
+// }
+// int distributeCandy(Node *root, int &ans)
+// {
+//     if (!root)
+//         return 0;
+//     int l = distributeCandy(root->left, ans);
+//     int r = distributeCandy(root->right, ans);
+//     ans += abs(l) + abs(r);
+//     return root->key + l + r - 1;
+// }
+// int answer(Node *root)
+// {
+//     int ans = 0;
+//     distributeCandy(root, ans);
+//     return ans;
+// }
+
 // int kthelement(vector<int> &a1, vector<int> &a2, int m, int n, int k)
 // {
 //     if (m > n)
