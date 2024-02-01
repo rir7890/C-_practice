@@ -1,10 +1,117 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    return 0;
-}
+// int countLessMid(vector<int> &row, int mid)
+// {
+//     int l = 0;
+//     int h = row.size() - 1;
+//     while (l <= h)
+//     {
+//         int md = (l + h) >> 1;
+//         if (row[md] <= mid)
+//         {
+//             l = md + 1;
+//         }
+//         else
+//         {
+//             h = md - 1;
+//         }
+//     }
+//     return l;
+// }
+// int findMedian(vector<vector<int>> &A)
+// {
+//     int r = A.size();
+//     int c = A[0].size();
+//     int low = INT_MAX;
+//     int high = INT_MIN;
+//     for (int i = 0; i < r; i++)
+//     {
+//         if (A[i][0] < low)
+//         {
+//             low = A[i][0];
+//         }
+//         if (A[i][c - 1] > high)
+//         {
+//             high = A[i][c - 1];
+//         }
+//     }
+//     while (low <= high)
+//     {
+//         int mid = (low + high) >> 1;
+//         int cnt = 0;
+//         for (int i = 0; i < r; i++)
+//         {
+//             cnt += countLessMid(A[i], mid);
+//         }
+//         if (cnt <= (r * c) / 2)
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//         {
+//             high = mid - 1;
+//         }
+//     }
+//     return low;
+// }
+// int main()
+// {
+//     int row = 3, col = 3;
+//     vector<vector<int>> arr = {{1, 3, 8}, {2, 3, 4}, {1, 2, 5}};
+//     cout << findMedian(arr) << endl;
+//     return 0;
+// }
+
+// int checkAnagram(string s)
+// {
+//     int freq[26] = {0};
+//     for (auto c : s)
+//     {
+//         if (c >= 'A' and c <= 'Z')
+//         {
+//             freq[c - 'A']++;
+//         }
+//         else
+//         {
+//             freq[c - 'a']++;
+//         }
+//     }
+//     for (int i = 0; i < 26; i++)
+//     {
+//         if (!freq[i])
+//             return false;
+//     }
+//     return true;
+// }
+
+// vector<int> peakElements(vector<vector<int>> &a, int N, int M)
+// {
+//     for (int i = 0; i < N; i++)
+//     {
+//         for (int j = 0; j < M; j++)
+//         {
+//             if (i - 1 >= 0 && a[i][j] < a[i - 1][j] || j - 1 >= 0 && a[i][j] < a[i][j - 1] || i + 1 < N && a[i][j] < a[i + 1][j] || j + 1 < M && a[i][j] < a[i][j + 1])
+//             {
+//                 continue;
+//             }
+//             else
+//             {
+//                 return {i, j};
+//             }
+//         }
+//     }
+//     return {-1, -1};
+// }
+// int main()
+// {
+//     vector<vector<int>> a{{10, 7}, {11, 17}};
+//     int row = a.size();
+//     int col = a[0].size();
+//     vector<int> ans = peakElements(a, row, col);
+//     cout << ans[0] << " " << ans[1] << " " << endl;
+//     return 0;
+// }
 
 // int lowerBound(vector<int> arr, int n, int x)
 // {
