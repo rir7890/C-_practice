@@ -1,6 +1,615 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// ////zig zag traversal of binary tree
+// class Node
+// {
+// public:
+//     int data;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// vector<vector<int>> zigzagTraversal(Node *root)
+// {
+//     vector<vector<int>> result;
+//     if (root == nullptr)
+//         return result;
+//     queue<Node *> q;
+//     q.push(root);
+//     bool leftToRight = true;
+//     while (!q.empty())
+//     {
+//         int size = q.size();
+//         vector<int> row(size);
+//         for (int i = 0; i < size; i++)
+//         {
+//             Node *n = q.front();
+//             q.pop();
+//             int index = leftToRight ? i : size - 1 - i;
+//             row[index] = n->data;
+//             if (n->left)
+//                 q.push(n->left);
+//             if (n->right)
+//                 q.push(n->right);
+//         }
+//         leftToRight = !leftToRight;
+//         result.push_back(row);
+//     }
+//     return result;
+// }
+// int main()
+// {
+//     Node *root = new Node(3);
+//     root->left = new Node(9);
+//     root->right = new Node(20);
+//     root->right->left = new Node(15);
+//     root->right->right = new Node(7);
+//     vector<vector<int>> ans;
+//     ans = zigzagTraversal(root);
+//     cout << "Zig Zag Traversal of Binary Tree" << endl;
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         for (int j = 0; j < ans[i].size(); j++)
+//         {
+//             cout << ans[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+////boundary traversal of a binary tree
+// struct node
+// {
+//     int data;
+//     node *left, *right;
+// };
+// bool isleaf(node *root)
+// {
+//     return root->left == nullptr and root->right == nullptr;
+// }
+// void addLeftBoundary(node *root, vector<int> &res)
+// {
+//     node *curr = root->left;
+//     while (curr)
+//     {
+//         if (!isLeaf(curr))
+//             res.push_back(curr->data);
+//         if (curr->left)
+//             curr = curr->left;
+//         else
+//             curr = curr->right;
+//     }
+// }
+// void addRightBoundary(node *root, vector<int> &res)
+// {
+//     node *curr = root->right;
+//     vector<int> tmp;
+//     while (curr)
+//     {
+//         if (!isleaf(curr))
+//             tmp.push_back(curr->data);
+//         if (curr->right)
+//             curr = curr->right;
+//         else
+//             curr = curr->left;
+//     }
+//     for (int i = tmp.size() - 1; i >= 0; i--)
+//     {
+//         res.push_back(tmp[i]);
+//     }
+// }
+// void addLeaves(node *root, vector<int> &res)
+// {
+//     if (isleaf(root))
+//     {
+//         res.push_back(root->data);
+//         return;
+//     }
+//     if (root->left)
+//         addLeaves(root->left, res);
+//     if (root->right)
+//         addLeaves(root->right, res);
+// }
+// vector<int> printBoundary(node *root)
+// {
+//     vector<int> res;
+//     if (root == nullptr)
+//         return res;
+//     if (isleaf(root))
+//     {
+//         res.push_back(root->data);
+//         return res;
+//     }
+//     if (!isleaf(root))
+//         res.push_back(root->data);
+//     addLeftBoundary(root, res);
+//     addLeaves(root, res);
+//     addRightBoundary(root, res);
+//     return res;
+// }
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// int main()
+// {
+//     struct node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->left->left = newNode(3);
+//     root->left->left->right = newNode(4);
+//     root->left->left->right->left = newNode(5);
+//     root->left->left->right->right = newNode(6);
+//     root->right = newNode(7);
+//     root->right->right = newNode(8);
+//     root->right->right->left = newNode(9);
+//     root->right->right->left->left = newNode(10);
+//     root->right->right->left->right = newNode(11);
+//     vector<int> boundaryTraversal;
+//     boundaryTraversal = printBoundary(root);
+//     cout << "The Boundary Traversal is : ";
+//     for (int i = 0; i < boundaryTraversal.size(); i++)
+//     {
+//         cout << boundaryTraversal[i] << " ";
+//     }
+//     return 0;
+// }
+
+////boundary traversal of a binary tree
+// struct node
+// {
+//     int data;
+//     node *left, *right;
+// };
+// bool isleaf(node *root)
+// {
+//     return root->left == nulltpr and root->right == nulltpr;
+// }
+// void addLeftBoundary(node *left, vector<int> &res)
+// {
+//     node *cur = root->left;
+//     while (cur)
+//     {
+//         if (!isleaf(cur))
+//         {
+//             res.push_back(curr->data);
+//         }
+//         if (cur->left)
+//             cur = cur->left;
+//         else
+//             cur = cur->right;
+//     }
+// }
+// void addRightBoundary(node *root, vector<int> &res)
+// {
+//     node *curr = root->right;
+//     vector<int> tmp;
+//     while (curr)
+//     {
+//         if (!isleaf(curr))
+//             tmp.push_back(curr->data);
+//         if (curr->right)
+//             curr = curr->right;
+//         else
+//             curr = curr->left;
+//     }
+//     for (int i = tmp.size() - 1; i >= 0; i--)
+//     {
+//         res.push_back(tmp[i]);
+//     }
+// }
+// void addLeaves(node *root, vector<int> &res)
+// {
+//     if (isleaf(root))
+//     {
+//         res.push_back(root->data);
+//         return;
+//     }
+//     if (root->left)
+//         addLeaves(root->left, res);
+//     if (root->right)
+//         addLeaves(root->right, res);
+// }
+// vector<int> printBoundary(node *root)
+// {
+//     vector<int> res;
+//     if (root == nullptr)
+//     {
+//         return res;
+//     }
+//     if (!isleaf(root))
+//         res.push_back(root->data);
+//     addLeftBoundary(root, res);
+//     addLeaves(root, res);
+//     addRightBoundary(root, res);
+//     return res;
+// }
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// int main()
+// {
+//     struct node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->left->left = newNode(3);
+//     root->left->left->right = newNode(4);
+//     root->left->left->right->left = newNode(5);
+//     root->left->left->right->right = newNode(6);
+//     root->right = newNode(7);
+//     root->right->right = newNode(8);
+//     root->right->right->left = newNode(9);
+//     root->right->right->left->left = newNode(10);
+//     root->right->right->left->right = newNode(11);
+//     vector<int> boundaryTraversal;
+//     boundaryTraversal = printBoundary(root);
+//     cout << "The Boundary Traversal is : ";
+//     for (int i = 0; i < boundaryTraversal.size(); i++)
+//     {
+//         cout << boundaryTraversal[i] << " ";
+//     }
+//     return 0;
+// }
+
+////word break solution in optimzied way also
+// // Recurrsive Solution
+// class Solution
+// {
+// public:
+//     int wordBreak(int n, string s, vector<string> &dictionary)
+//     {
+//         string a = s;
+//         if (a == "")
+//         {
+//             return 1;
+//         }
+//         for (auto it : dictionary)
+//         {
+//             if (it == a.substr(0, it.size()))
+//             {
+//                 a = a.substr(it.size());
+//                 int ans = wordBreak(n, a, dictionary);
+//                 if (ans == 0)
+//                 {
+//                     a = s;
+//                 }
+//                 else
+//                 {
+//                     return 1;
+//                 }
+//             }
+//         }
+//         if (a == s)
+//         {
+//             return 0;
+//         }
+//     }
+// };
+// // Optimised Solution
+// class Solution
+// {
+// public:
+//     int solve(int index, string s, vector<string> &dictionary, vector<int> &dp)
+//     {
+//         if (index >= s.size())
+//         {
+//             return 1;
+//         }
+//         if (dp[index] != 0)
+//         {
+//             return dp[index];
+//         }
+//         int ans = 0;
+//         for (auto it : dictionary)
+//         {
+//             if (it == s.substr(index, it.size()))
+//             {
+//                 ans = solve(index + it.size(), s, dictionary, dp);
+//                 dp[index] = max(ans, dp[index]);
+//             }
+//         }
+//         return dp[index];
+//     }
+//     int wordBreak(int n, string s, vector<string> &dictionary)
+//     {
+//         // code here
+//         vector<int> dp(s.size(), 0);
+//         return solve(0, s, dictionary, dp);
+//     }
+// };
+// // Further Optimisation
+// class Solution
+// {
+// public:
+//     int solveTab(string s, vector<string> &dictionary)
+//     {
+//         vector<int> dp(s.size() + 1, 0);
+//         dp[s.size()] = 1;
+//         int ans = 0;
+//         for (int i = dp.size() - 1; i >= 0; i--)
+//         {
+//             for (auto it : dictionary)
+//             {
+//                 if (it == s.substr(i, it.size()))
+//                 {
+//                     if (i + it.size() > s.size())
+//                     {
+//                         continue;
+//                     }
+//                     ans = dp[i + it.size()];
+//                     dp[i] = max(ans, dp[i]);
+//                 }
+//             }
+//         }
+//         return dp[0];
+//     }
+//     int wordBreak(int n, string s, vector<string> &dictionary)
+//     {
+//         // code here
+//         //  vector<int>dp(s.size(),0);
+//         return solveTab(s, dictionary);
+//     }
+// };
+
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data)
+//     {
+//         this->data = data;
+//         left = nullptr;
+//         right = nullptr;
+//     }
+// };
+// void zigzagTraversal(node *root)
+// {
+//     if (root == nullptr)
+//     {
+//         return;
+//     }
+//     stack<node *> s1;
+// }
+// int main()
+// {
+//     node *root = new node(5);
+//     root->left = new node(3);
+//     root->right = new node(7);
+//     root->left->left = new node(2);
+//     root->left->right = new node(4);
+//     root->right->left = new node(6);
+//     root->right->right = new node(8);
+//     return 0;
+// }
+
+//////check the tree is identical or not
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data)
+//     {
+//         this->data = data;
+//         left = nullptr;
+//         right = nullptr;
+//     }
+// };
+// bool checkIdentical(node *root1, node *root2)
+// {
+//     if (root1 == nullptr && root2 == nullptr)
+//     {
+//         return true;
+//     }
+//     if (root1->data != root2->data)
+//     {
+//         return false;
+//     }
+//     if (!checkIdentical(root1->left, root2->left))
+//     {
+//         return false;
+//     }
+//     if (!checkIdentical(root1->right, root2->right))
+//     {
+//         return false;
+//     }
+//     return true;
+// }
+// int main()
+// {
+//     node *root1 = new node(5);
+//     root1->left = new node(3);
+//     root1->right = new node(7);
+//     root1->left->left = new node(2);
+//     root1->left->right = new node(4);
+//     root1->right->left = new node(6);
+//     root1->right->right = new node(8);
+//     node *root2 = new node(5);
+//     root2->left = new node(3);
+//     root2->right = new node(7);
+//     root2->left->left = new node(2);
+//     root2->left->right = new node(4);
+//     root2->right->left = new node(6);
+//     root2->right->right = new node(8);
+//     cout << checkIdentical(root1, root2);
+//     return 0;
+// }
+
+//////find the Maximum sum Path
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data)
+//     {
+//         this->data = data;
+//         left = nullptr;
+//         right = nullptr;
+//     }
+// };
+// int solve(Node *root, int &maxx)
+// {
+//     if (root == nullptr)
+//     {
+//         return 0;
+//     }
+//     int lh = max(0, solve(root->left, maxx));
+//     int rh = max(0, solve(root->right, maxx));
+//     int val = root->data;
+//     maxx = max(maxx, (lh + rh) + val);
+//     return max(lh, rh) + val;
+// }
+// int findPathSum(Node *root)
+// {
+//     int maxx = INT_MIN;
+//     solve(root, maxx);
+//     return maxx;
+// }
+
+////check if a given array represents a binary heap
+// bool isHeap(int arr[], int i, int n)
+// {
+//     for (int i = 0; i <= (n - 2) / 2; i++)
+//     {
+//         if (arr[i * 2 + 1] > arr[i])
+//         {
+//             return false;
+//         }
+//         if (arr[i * 2 + 2] > arr[i] && i * 2 + 2 > n)
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+///// diameter of the bst
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data)
+//     {
+//         this->data = data;
+//         left = nullptr;
+//         right = nullptr;
+//     }
+// };
+// int height(node *root)
+// {
+//     if (root == nullptr)
+//     {
+//         return 0;
+//     }
+//     int lh = height(root->left);
+//     int rh = height(root->right);
+//     return max(lh, rh) + 1;
+// }
+// int diameter(node *root, int &ans)
+// {
+//     if (root == nullptr)
+//     {
+//         return 0;
+//     }
+//     int dl = height(root->left);
+//     int dr = height(root->right);
+//     ans = max(ans, dl + dr);
+//     return ans;
+// }
+// int main()
+// {
+//     node *root = new node(5);
+//     root->left = new node(3);
+//     root->right = new node(7);
+//     root->left->left = new node(2);
+//     root->left->right = new node(4);
+//     root->right->left = new node(6);
+//     root->right->right = new node(8);
+//     int ans = 0;
+//     diameter(root, ans);
+//     cout << ans << endl;
+//     return 0;
+// }
+
+////flatten the bst tree into right skew tree
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data)
+//     {
+//         this->data = data;
+//         left = nullptr;
+//         right = nullptr;
+//     }
+// };
+// void print(node *parent)
+// {
+//     node *curr = parent;
+//     while (curr != nullptr)
+//     {
+//         cout << curr->data << " ", curr = curr->right;
+//     }
+// }
+// void inorder(vector<int> &traversal, node *parent)
+// {
+//     if (parent == nullptr)
+//     {
+//         return;
+//     }
+//     inorder(traversal, parent->left);
+//     traversal.push_back(parent->data);
+//     inorder(traversal, parent->right);
+// }
+// void form(int pos, vector<int> &traversal, node *&prev)
+// {
+//     if (pos == traversal.size())
+//     {
+//         return;
+//     }
+//     prev->right = new node(traversal[pos]);
+//     prev->left = nullptr;
+//     prev = prev->right;
+//     form(pos + 1, traversal, prev);
+// }
+// node *flatten(node *parent)
+// {
+//     node *dummy = new node(-1);
+//     node *prev = dummy;
+//     vector<int> traversal;
+//     inorder(traversal, parent);
+//     form(0, traversal, prev);
+//     prev->left = nullptr;
+//     // cout << prev->right->data << endl;
+//     prev->right = nullptr;
+//     node *ret = dummy->right;
+//     delete dummy;
+//     return ret;
+// }
+// int main()
+// {
+//     node *root = new node(5);
+//     root->left = new node(3);
+//     root->right = new node(7);
+//     root->left->left = new node(2);
+//     root->left->right = new node(4);
+//     root->right->left = new node(6);
+//     root->right->right = new node(8);
+//     print(flatten(root));
+//     return 0;
+// }
+
 ////Recursive sequence question of GFG
 // long long sequence(int n)
 // {
