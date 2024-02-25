@@ -1,7 +1,332 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ////zig zag traversal of binary tree
+/////Reach a given score
+// long long int count(long long int n)
+// {
+//     long long int dp[n + 1];
+//     memset(dp, 0, sizeof(dp));
+//     dp[0] = 1;
+//     for (long long int i = 3; i <= n; i++)
+//     {
+//         dp[i] += dp[i - 3];
+//     }
+//     for (long long int i = 5; i <= n; i++)
+//     {
+//         dp[i] += dp[i - 5];
+//     }
+//     for (long long int i = 10; i <= n; i++)
+//     {
+//         dp[i] += dp[i - 10];
+//     }
+//     return dp[n];
+// }
+
+///////Bottom view of the binary tree
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->left = n->right = nullptr;
+//     return n;
+// }
+// vector<int> BottomView(node *root)
+// {
+//     vector<int> res;
+//     if (root == nullptr)
+//         return res;
+//     map<int, vector<int>> mp;
+//     queue<pair<node *, int>> q;
+//     q.push({root, 0});
+//     while (!q.empty())
+//     {
+//         auto t = q.front();
+//         q.pop();
+//         mp[t.second].push_back(t.first->data);
+//         if (t.first->left)
+//             q.push({t.first->left, t.second - 1});
+//         if (t.first->right)
+//             q.push({t.first->right, t.second + 1});
+//     }
+//     for (auto i : mp)
+//     {
+//         res.push_back(i.second.back());
+//     }
+//     return res;
+// }
+// int main()
+// {
+//     node *root = newNode(10);
+//     root->left = newNode(20);
+//     root->right = newNode(30);
+//     root->left->left = newNode(40);
+//     root->left->right = newNode(60);
+//     for (auto i : BottomView(root))
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+//////top view of the binary tree
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// vector<int> topViewOfBinaryTree(node *root)
+// {
+//     if (root == nullptr)
+//         return {-1};
+//     queue<pair<node *, int>> q;
+//     vector<int> res;
+//     map<int, int> mp;
+//     q.push({root, 0});
+//     while (!q.empty())
+//     {
+//         auto t = q.front();
+//         q.pop();
+//         int line = t.second;
+//         node *n = t.first;
+//         if (mp.find(line) == mp.end())
+//         {
+//             mp[line] = n->data;
+//         }
+//         if (n->left)
+//         {
+//             q.push({n->left, line - 1});
+//         }
+//         if (n->right)
+//         {
+//             q.push({n->right, line + 1});
+//         }
+//     }
+//     for (auto i : mp)
+//     {
+//         res.push_back(i.second);
+//     }
+//     return res;
+// }
+// int main()
+// {
+//     struct node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(10);
+//     root->left->left->right = newNode(5);
+//     root->left->left->right->right = newNode(6);
+//     root->right = newNode(3);
+//     root->right->left = newNode(9);
+//     root->right->right = newNode(10);
+//     for (auto i : topViewOfBinaryTree(root))
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+//////top view of the binary tree
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// vector<int> topViewOfBinaryTree(node *root)
+// {
+//     if (root == nullptr)
+//     {
+//         return {-1};
+//     }
+//     queue<node *> q;
+//     vector<int> res;
+//     q.push(root);
+//     int level = 0;
+//     while (!q.empty())
+//     {
+//         int s = q.size();
+//         for (int i = 0; i < s; i++)
+//         {
+//             node *t = q.front();
+//             q.pop();
+//             if (level == 0)
+//             {
+//                 res.push_back(t->data);
+//             }
+//             else
+//             {
+//                 if (i == 0)
+//                 {
+//                     res.insert(res.begin(), t->data);
+//                 }
+//                 if (i == s - 1)
+//                 {
+//                     res.insert(res.end(), t->data);
+//                 }
+//             }
+//             if (t->left)
+//                 q.push(t->left);
+//             if (t->right)
+//                 q.push(t->right);
+//         }
+//         level++;
+//     }
+//     return res;
+// }
+// int main()
+// {
+//     struct node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(10);
+//     root->left->left->right = newNode(5);
+//     root->left->left->right->right = newNode(6);
+//     root->right = newNode(3);
+//     root->right->left = newNode(9);
+//     root->right->right = newNode(10);
+//     for (auto i : topViewOfBinaryTree(root))
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+///////insertt the range of element at given index
+// int main()
+// {
+//     vector<int> original{1, 2, 3, 4, 5};
+//     vector<int> temp{2, 5, 9, 0, 3, 10};
+//     for (auto i : original)
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     temp.insert(temp.end(), original.begin(), original.end());
+//     for (auto it : temp)
+//     {
+//         cout << it << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+////Vertical order traversal of binary tree
+// struct node
+// {
+//     int data;
+//     node *left, *right;
+// };
+// vector<vector<int>> findVertical(node *root)
+// {
+//     map<int, map<int, multiset<int>>> nodes;
+//     queue<pair<node *, pair<int, int>>> q;
+//     q.push({root, {0, 0}});
+//     while (!q.empty())
+//     {
+//         auto n = q.front();
+//         q.pop();
+//         node *t = n.first;
+//         int x = n.second.first;
+//         int y = n.second.second;
+//         nodes[x][y].insert(t->data);
+//         if (t->left)
+//         {
+//             q.push({t->left,
+//                     {x - 1, y + 1}});
+//         }
+//         if (t->right)
+//         {
+//             q.push({t->right,
+//                     {x + 1, y + 1}});
+//         }
+//     }
+//     vector<vector<int>> res;
+//     for (auto p : nodes)
+//     {
+//         vector<int> col;
+//         for (auto it : p.second)
+//         {
+//             col.insert(col.end(), it.second.begin(), it.second.end());
+//         }
+//         res.push_back(col);
+//     }
+//     return res;
+// }
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// int main()
+// {
+//     struct node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(10);
+//     root->left->left->right = newNode(5);
+//     root->left->left->right->right = newNode(6);
+//     root->right = newNode(3);
+//     root->right->left = newNode(9);
+//     root->right->right = newNode(10);
+//     vector<vector<int>> verticalTraversal;
+//     verticalTraversal = findVertical(root);
+//     cout << "The Vertical Traversal is : " << endl;
+//     for (auto vertical : verticalTraversal)
+//     {
+//         for (auto nodeVal : vertical)
+//         {
+//             cout << nodeVal << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+//////maximum sum problem
+// class solution
+// {
+// public:
+//     int maxSum(int n)
+//     {
+//         if (n < 12)
+//         {
+//             return n;
+//         }
+//         int sum = maxSum(n / 2) + maxSum(n / 3) + maxSum(n / 4);
+//         ////if we futher divide the number we get less than the current number then
+//         ////we donot have to add those number , so we will add our original number
+//         ////that is why we use max(sum,n) if sum is greater than return it if it is not then return n
+//         return max(sum, n);
+//     }
+// };
+
+//////zig zag traversal of binary tree
 // class Node
 // {
 // public:
