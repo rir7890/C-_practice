@@ -1,6 +1,407 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//////largest number formed from an array
+// class solution
+// {
+// public:
+//     static bool compare(string a, string b)
+//     {
+//         return a + b > b + a;
+//     }
+//     void printLargest(int n, vector<string> &arr)
+//     {
+//         sort(arr.begin(), arr.end(), compare);
+//         string ans = "";
+//         for (auto i : arr)
+//         {
+//             cout << i << ",";
+//         }
+//         cout << endl;
+//         return;
+//     }
+// };
+// int main()
+// {
+//     vector<string> arr{"3", "30", "34", "5", "9"};
+//     solution s;
+//     s.printLargest(5, arr);
+//     return 0;
+// }
+
+///////print nodes at distance k in a binary tree
+// struct TreeNode
+// {
+//     int val;
+//     TreeNode *left;
+//     TreeNode *right;
+//     TreeNode(int x) : val(x), right(nullptr), left(nullptr) {}
+// };
+// class Solution
+// {
+// public:
+//     void marksParents(TreeNode *root, unordered_map<TreeNode *, TreeNode *> &parent_track, TreeNode *target)
+//     {
+//         queue<TreeNode *> q;
+//         q.push(root);
+//         while (!q.empty())
+//         {
+//             auto t = q.front();
+//             q.pop();
+//             if (t->left)
+//             {
+//                 parent_track[t->left] = t;
+//                 q.push(t->left);
+//             }
+//             if (t->right)
+//             {
+//                 parent_track[t->right] = t;
+//                 q.push(t->right);
+//             }
+//         }
+//     }
+//     vector<int> distanceK(TreeNode *root, TreeNode *target, int k)
+//     {
+//         unordered_map<TreeNode *, TreeNode *> parent_track;
+//         marksParents(root, parent_track, target);
+//         unordered_map<TreeNode *, bool> visited;
+//         queue<TreeNode *> q;
+//         queue.push(target);
+//         int curr_level = 0;
+//         while (!q.empty())
+//         {
+//             int size = q.size();
+//             if (curr_level++ == k)
+//             {
+//                 break;
+//             }
+//             for (int i = 0; i < size; i++)
+//             {
+//                 TreeNode *current = q.front();
+//                 q.pop();
+//                 if (current->left && !visited[current->left])
+//                 {
+//                     q.push(current->left);
+//                     visited[current->left] = true;
+//                 }
+//                 if (current->right && !visited[current->right])
+//                 {
+//                     q.push(current->right);
+//                     visited[current->right] = true;
+//                 }
+//                 if (parent_track[current] && !visited[parent_track[current]])
+//                 {
+//                     q.push(parent_track[current]);
+//                     visited[parent_track[current]] = true;
+//                 }
+//             }
+//         }
+//         vector<int> result;
+//         while (!q.empty())
+//         {
+//             TreeNode *current = q.front();
+//             q.pop();
+//             result.push_back(current->val);
+//         }
+//         return result;
+//     }
+// };
+
+////////check for children sum property in a binary tree
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// void reorder(node *root)
+// {
+//     if (root == nullptr)
+//     {
+//         return;
+//     }
+//     int child = 0;
+//     if (root->left)
+//     {
+//         child += root->left->data;
+//     }
+//     if (root->right)
+//     {
+//         child += root->right->data;
+//     }
+//     if (child < root->data)
+//     {
+//         if (root->left)
+//             root->left->data = root->data;
+//         else if (root->right)
+//             root->right->data = root->data;
+//     }
+//     reorder(root->left);
+//     reorder(root->right);
+//     int tot = 0;
+//     if (root->left)
+//         tot += root->left->data;
+//     if (root->right)
+//         tot += root->right->data;
+//     if (root->left || root->right)
+//         root->data = tot;
+// }
+// void ChangeTree(node *root)
+// {
+//     reorder(root);
+// }
+// int main()
+// {
+//     return 0;
+// }
+
+//////maximum width of a binary tree
+// struct Node
+// {
+//     int data;
+//     Node *right;
+//     Node *left;
+// };
+// int maximumWidth(Node *root)
+// {
+//     if (root == NULL)
+//         return 0;
+//     int ans = -1;
+//     queue<pair<node *, int>> q;
+//     q.push({root, 0});
+//     while (!q.empty())
+//     {
+//         int s = q.size();
+//         int currMin = q.front().second;
+//         int leftmost, rightmost;
+//         for (int i = 0; i < s; ++i)
+//         {
+//             int cur_id = q.front().second - currMin;
+//             Node *t = q.front().first;
+//             q.pop();
+//             if (i == 0)
+//                 leftmost = cur_id;
+//             if (i == s - 1)
+//                 rightmost = cur_id;
+//             if (t->left)
+//             {
+//                 q.push({t->left, curr_id * 2 + 1});
+//             }
+//             if (t->right)
+//             {
+//                 q.push({t->right, curr_id * 2 + 2});
+//             }
+//         }
+//         ans = max(ans, rightmost - leftmost + 1);
+//     }
+//     return ans;
+// }
+
+////////Least Common Ancestor for given nodes
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *leastCommonAncestor(node *root, int p, int q)
+// {
+//     if (root == nullptr || root->data == p || root->data == q)
+//     {
+//         return root;
+//     }
+//     node *lcl = leastCommonAncestor(root->left, p, q);
+//     node *lcr = leastCommonAncestor(root->right, p, q);
+//     if (lcl == nullptr)
+//     {
+//         return lcr;
+//     }
+//     else if (lcr == nullptr)
+//     {
+//         return lcl;
+//     }
+//     else
+//     {
+//         return root;
+//     }
+// }
+
+///////play with OR function
+// vector<int> palyWith(vector<int> a, int n)
+// {
+//     for (int i = 0; i < n - 1; i++)
+//     {
+//         a[i] = a[i] | a[i + 1];
+//     }
+//     return a;
+// }
+
+//////play with OR and apply the or bitwise
+// int main()
+// {
+//     vector<int> v{10, 11, 1, 2, 3};
+//     for (int i = 0; i < v.size() - 1; i++)
+//     {
+//         v[i] = v[i] | v[i + 1];
+//     }
+//     for (auto i : v)
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+///////least common ancestor for two given nodes
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// node *LeastCommon(node *root, int p, int q)
+// {
+//     if (root == nullptr || root->data == p || root->data == q)
+//         return root;
+//     node *lcl = LeastCommon(root->left, p, q);
+//     node *lcr = LeastCommon(root->right, p, q);
+//     if (lcl == nullptr)
+//     {
+//         return lcr;
+//     }
+//     else if (lcr == nullptr)
+//     {
+//         return lcl;
+//     }
+//     else
+//     {
+//         return root;
+//     }
+// }
+// int main()
+// {
+//     node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->right = newNode(3);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(5);
+//     root->right->left = newNode(6);
+//     root->right->right = newNode(7);
+//     cout << LeastCommon(root, 5, 6)->data << endl;
+//     return 0;
+// }
+
+//////find all subsequence of the string
+// void sub(string s, int i, string &f)
+// {
+//     //// this function will print all the subsequence
+//     //// of the string
+//     if (i == s.length())
+//         cout << f << endl;
+//     return;
+//     f = f + s[i];
+//     sub(s, i + 1, f);
+//     f.pop_back();
+//     sub(s, i + 1, f);
+// }
+
+///////print root to node path in a binary tree
+// struct node
+// {
+//     int data;
+//     node *left;
+//     node *right;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// bool PathFromRoot(node *root, int v, vector<int> &res)
+// {
+//     if (root == nullptr)
+//         return false;
+//     res.push_back(root->data);
+//     if (root->data == v)
+//     {
+//         return true;
+//     }
+//     if (PathFromRoot(root->left, v, res) || PathFromRoot(root->right, v, res))
+//     {
+//         return true;
+//     }
+//     res.pop_back();
+//     return false;
+// }
+// int main()
+// {
+//     node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->right = newNode(3);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(5);
+//     root->left->right->left = newNode(6);
+//     root->left->right->right = newNode(7);
+//     vector<int> res;
+//     PathFromRoot(root, 7, res);
+//     for (auto i : res)
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+//////check symmetric binary tree
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *n = new node;
+//     n->data = data;
+//     n->right = n->left = nullptr;
+//     return n;
+// }
+// bool checkSymmetric(node *n1, node *n2)
+// {
+//     if (n1 == nullptr || n2 == nullptr)
+//     {
+//         return n1 == n2;
+//     }
+//     return (n1->data == n2->data) && checkSymmetric(n1->right, n2->left) && checkSymmetric(n1->left, n2->right);
+// }
+// bool symmetric(node *root)
+// {
+//     if (root == nullptr)
+//         return true;
+//     return checkSymmetric(root->left, root->right);
+// }
+// int main()
+// {
+//     node *n = newNode(1);
+//     n->left = newNode(2);
+//     n->right = newNode(2);
+//     n->left->left = newNode(3);
+//     n->left->right = newNode(4);
+//     n->right->left = newNode(1);
+//     n->right->right = newNode(3);
+//     cout << symmetric(n) << endl;
+//     return 0;
+// }
+
 /////Reach a given score
 // long long int count(long long int n)
 // {
