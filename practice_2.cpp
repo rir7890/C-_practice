@@ -1,6 +1,320 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+///////check if frequency of all characters can become same by one removal
+// #define M 26
+// int getIdx(char ch)
+// {
+//     return (ch - 'a');
+// }
+// bool allSame(int freq[], int N)
+// {
+//     int same;
+//     int i;
+//     while (i = 0; i < N; i++)
+//     {
+//         if (freq[i] > 0)
+//         {
+//             same = freq[i];
+//             break;
+//         }
+//     }
+//     for (int j = i + 1; j < N; j++)
+//     {
+//         if (freq[j] > 0 && freq[j] != same)
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// bool possibleSameChar(string str)
+// {
+//     int l = str.length();
+//     int freq[M] = {0};
+//     for (int i = 0; i < l; i++)
+//     {
+//         freq[getIdx(str[i])]++;
+//     }
+//     if (allSame(freq, M))
+//     {
+//         return true;
+//     }
+//     for (char c = 'a'; c <= 'z'; c++)
+//     {
+//         int i = getIdx(c);
+//         if (freq[i] > 0)
+//         {
+//             freq[i]--;
+//             if (allSame(freq, M))
+//             {
+//                 return true;
+//             }
+//             freq[i]++;
+//         }
+//     }
+//     return false;
+// }
+
+/////////Maximum Index
+// class Pair
+// {
+// public:
+//     int value;
+//     int index;
+//     Pair(int value, int index) : value(value), index(index) {}
+//     bool operator<(const Pair &p) const
+//     {
+//         return this->value < p.value;
+//     }
+// };
+// class Solution
+// {
+// public:
+//     int maxIndexDiff(vector<int> &arr, int n)
+//     {
+//         vector<Pair> list;
+//         for (int i = 0; i < n; i++)
+//         {
+//             list.push_back(Pair(arr[i], i));
+//         }
+//         sort(list.begin(), list.end());
+//         for (auto it : list)
+//         {
+//             cout << it.index << " " << it.value << endl;
+//         }
+//         int ls = list.size();
+//         int maxi_j = list[ls - 1].index;
+//         int maxi = 0;
+//         for (int i = ls - 2; i >= 0; i--)
+//         {
+//             if (list[i].value < maxi_j)
+//             {
+//                 maxi = max(maxi, maxi_j - list[i].value);
+//             }
+//             maxi_j = max(maxi_j, list[i].index);
+//         }
+//         return maxi;
+//     }
+// };
+// int main()
+// {
+//     vector<int> a{34, 8, 10, 3, 2, 80, 30, 33, 1};
+//     Solution s;
+//     s.maxIndexDiff(a, 9);
+//     return 0;
+// }
+
+/////////maximum index size question
+// class Pair
+// {
+// public:
+//     int value;
+//     int index;
+//     Pair(int value, int index) : value(value), index(index) {}
+//     bool operator<(const Pair &p) const
+//     {
+//         return this->value < p.value;
+//     }
+// };
+// class Solution
+// {
+// public:
+//     int maxIndexDiff(int a[], int n)
+//     {
+//         // Your code here
+//         vector<Pair> list;
+//         for (int i = 0; i < n; ++i)
+//             list.push_back(Pair(a[i], i));
+//         sort(list.begin(), list.end());
+//         int ls = list.size();
+//         int maxi_j = list[ls - 1].index;
+//         int maxi = 0;
+//         for (int i = ls - 2; i >= 0; --i)
+//         {
+//             if (list[i].index < maxi_j)
+//             {
+//                 maxi = max(maxi, maxi_j - list[i].index);
+//             }
+//             maxi_j = max(maxi_j, list[i].index);
+//         }
+//         return maxi;
+//     }
+// };
+
+////////Given an array arr[], find the maximum j – i such that arr[i] <= arr[j]
+// struct Node
+// {
+//     int data;
+//     Node *right;
+//     Node *left;
+// };
+// Node *newNode(int data)
+// {
+//     Node *t = new Node;
+//     t->data = data;
+//     t->right = t->left = nullptr;
+//     return t;
+// };
+
+// int maxIndexDiff(vector<int> &arr, int n)
+// {
+//     int maxd = -1;
+//     int i, j;
+//     for (i = 0; i < n - 1; i++)
+//     {
+//         for (j = n - 1; j > i; j--)
+//         {
+//             if (arr[j] >= a[i] && maxd < (j - i))
+//             {
+//                 maxd = j - i;
+//             }
+//         }
+//     }
+//     return maxd;
+// };
+
+/////////check the tree is complete binary tree or not
+// bool checkCompleteTree(Node *root)
+// {
+//     if (root->left == nullptr && root->right != nullptr)
+//     {
+//         return false;
+//     }
+//     if (!checkCompleteTree(root->left))
+//     {
+//         return false;
+//     }
+//     if (!checkCompleteTree(root->right))
+//     {
+//         return false;
+//     }
+//     return true;
+// }
+// int main()
+// {
+//     Node *root = newNode(1);
+//     root->right = newNode(2);
+//     root->left = newNode(3);
+//     root->left->left = newNode(4);
+//     root->left->right = newNode(5);
+//     root->right->left = newNode(6);
+//     cout << checkCompleteTree(root) << endl;
+//     return 0;
+// }
+
+////////count the number of nodes in a binary tree
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *t = new node;
+//     t->data = data;
+//     t->right = t->left = nullptr;
+//     return t;
+// }
+// //////always remember that it is used only when tree is complete binary tree
+// void countCompleteTree(node *root, int &count)
+// {
+//     if (curr == nullptr)
+//     {
+//         return;
+//     }
+//     count++;
+//     countCompleteTree(root->left, count);
+//     countCompleteTree(root->right, count);
+// }
+// int main()
+// {
+//     return 0;
+// }
+
+////////minimum time taken to burn a binary tree from a node
+// struct node
+// {
+//     int data;
+//     node *right;
+//     node *left;
+// };
+// node *newNode(int data)
+// {
+//     node *t = new node;
+//     t->data = data;
+//     t->right = t->left = nullptr;
+//     return t;
+// }
+// void markParent(node *root, unordered_map<node *, node *> &parent_track, node *target)
+// {
+//     queue<node *> q;
+//     q.push(root);
+//     while (!q.empty())
+//     {
+//         auto t = q.front();
+//         q.pop();
+//         if (t->left)
+//         {
+//             q.push(t->left);
+//             parent_track[t->left] = t;
+//         }
+//         if (t->right)
+//         {
+//             q.push(t->right);
+//             parent_track[t->right] = t;
+//         }
+//     }
+// }
+// int miniTimeTaken(node *root, node *target)
+// {
+//     queue<node *> q;
+//     unordered_map<node *, bool> visited;
+//     unordered_map<node *, node *> parent_track;
+//     markParent(root, parent_track, target);
+//     q.push(target);
+//     int curr = 0;
+//     while (!q.empty())
+//     {
+//         int size = q.size();
+//         for (int i = 0; i < size; i++)
+//         {
+//             auto t = q.front();
+//             q.pop();
+//             if (t->left && !visited[t->left])
+//             {
+//                 visited[t->left] = true;
+//                 q.push(t->left);
+//             }
+//             if (t->right && !visited[t->right])
+//             {
+//                 visited[t->right] = true;
+//                 q.push(t->right);
+//             }
+//             if (parent_track[t] && !visited[parent_track[t]])
+//             {
+//                 visited[parent_track[t]] = true;
+//                 q.push(parent_track[t]);
+//             }
+//         }
+//         ++curr;
+//     }
+//     return curr;
+// }
+// int main()
+// {
+//     node *root = newNode(1);
+//     root->left = newNode(2);
+//     root->right = newNode(3);
+//     root->left->left = newNode(4);
+//     root->right->left = newNode(5);
+//     root->right->right = newNode(6);
+//     root->left->left->right = newNode(7);
+//     cout << miniTimeTaken(root, root->left) << endl;
+//     return 0;
+// }
+
 //////largest number formed from an array
 // class solution
 // {
