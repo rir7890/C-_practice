@@ -1,6 +1,198 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// bool isAddictive(string s){
+//     int n=s.size();
+//     for(int i=0;i<min(8,n);i++){
+//         for(int j=0;j<min(8,n);j++){
+//             string temp1=s.substr(0,i+1);
+//             string temp2=s.substr(i+1,j-i);
+//             if((temp1.size()>1 and temp1[0]=='0')or (temp2.size()>1 and temp2[0]=='0')){
+//                 continue;
+//             }
+//             long long num1=stoll(temp1);
+//             long long num2=stoll(temp2);
+//             int k=j+1;
+//             while(k<n){
+//                 long long sum=num1+num2;
+//                 string t=to_string(sum);
+//                 if(k+t.size()>n || s.substr(k,t.size())!=t){
+//                     break;
+//                 }
+//                 k+=t.size();
+//                 num1=num2;
+//                 num2=sum;
+//                 if(k==n){
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
+//     return true;
+// }
+
+// bool isAddictiveSequence(string s)
+// {
+//     int n = s.size();
+//     for (int i = 0; i < min(8, n); i++)
+//     {
+//         for (int j = i + 1; j < min(8, n); j++)
+//         {
+//             string tmp1 = s.substr(0, i + 1);
+//             string tmp2 = s.substr(i + 1, j - i);
+//             if ((tmp1.size() > 1 && tmp1[0] == '0') or (tmp2.size() > 1 && tmp2[0] == '0'))
+//             {
+//                 continue;
+//             }
+//             long long num1 = stoll(tmp1);
+//             long long num2 = stoll(tmp2);
+//             int k = j + 1;
+//             while (k < n)
+//             {
+//                 long long sum = num1 + num2;
+//                 string t = to_string(sum);
+//                 if (k + t.size() > n || s.substr(k, t.size()) != t)
+//                 {
+//                     break;
+//                 }
+//                 k += t.size();
+//                 num1 = num2;
+//                 num2 = sum;
+//                 if (k == n)
+//                 {
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
+//     return false;
+// }
+
+////////zig zag traversal
+// class Node
+// {
+// public:
+//     int data;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// vector<int>
+// zigzagTraversal(Node *root)
+// {
+//     vector<int> ans;
+//     stack<int> curr;
+//     stack<int> ncurr;
+//     curr.push(root);
+//     bool lefttoright = true;
+//     while (!curr.empty())
+//     {
+//         auto t = curr.top();
+//         curr.pop();
+//         if (t)
+//         {
+//             ans.push_back(t->data);
+//             if (lefttoright)
+//             {
+//                 ncurr.push_back(t->left);
+//                 ncurr.push_back(t->right);
+//             }
+//             else
+//             {
+//                 ncurr.push_back(t->right);
+//                 ncurr.push_back(t->left);
+//             }
+//         }
+//         if (curr.empty())
+//         {
+//             lefttoright = !lefttoright;
+//             swap(curr, ncurr);
+//         }
+//     }
+//     return ans;
+// }
+
+// int countPairs(vector<int> &a1, vector<int> &a2, int x)
+// {
+//     unordered_set<int> st;
+//     for (int i = 0; i < a1.size(); i++)
+//     {
+//         st.insert(a1[i]);
+//     }
+//     int ans = 0;
+//     for (int i = 0; i < a2.size(); i++)
+//     {
+//         if (st.find(x - a2[i]) != st.end())
+//         {
+//             ans++;
+//         }
+//     }
+//     return ans;
+// }
+// int main()
+// {
+//     vector<int> a1{7, 5, 1, 3};
+//     vector<int> a2{3, 5, 2, 8};
+//     int x = 10;
+//     cout << countPairs(a1, a2, x) << endl;
+//     return 0;
+// }
+
+///////find the Nth Character
+// class Solution
+// {
+// public:
+//     char nthCharacter(string s, int r, int n)
+//     {
+//         string s0 = "01";
+//         string s1 = "10";
+//         while (r--)
+//         {
+//             string ans = "";
+//             for (int j = s.length() - 1; j >= 0; j--)
+//             {
+//                 if (s[j] == '0')
+//                 {
+//                     ans = s0 + ans;
+//                 }
+//                 else
+//                 {
+//                     ans = s1 + ans;
+//                 }
+//             }
+//             s = ans;
+//         }
+//         return s[n];
+//     }
+//     char whileUsenthCharacter(string s, int r, int n)
+//     {
+//         while (r--)
+//         {
+//             string str;
+//             int m = (n + 2) / 2;
+//             for (int i = 0; i < m && i < s.size(); i++)
+//             {
+//                 if (s[i] == '0')
+//                     str += "01";
+//                 else
+//                     str += "10";
+//             }
+//             cout << str << endl;
+//             s = str;
+//         }
+//         return s[n];
+//     }
+// };
+// int main()
+// {
+//     string s = "1100";
+//     int r = 2;
+//     int n = 3;
+//     Solution c;
+//     cout << c.whileUsenthCharacter(s, r, n) << endl;
+//     return 0;
+// }
+
 ///////check if frequency of all characters can become same by one removal
 // #define M 26
 // int getIdx(char ch)
