@@ -1,6 +1,320 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//////////least increasing subsequence
+// int getAns(int arr[], int n, int ind, int prev_ind, vector<vector<int>> &dp)
+// {
+//     if (ind == n)
+//         return 0;
+//     if (dp[ind][prev_ind] != -1)
+//     {
+//         return dp[ind][prev_ind];
+//     }
+//     int notTake = 0 + getAns(arr, n, ind + 1, prev_ind, dp);
+//     int take = 0;
+//     if (prev_ind == -1 && arr[ind] > arr[prev_ind])
+//     {
+//         take = 1 + getAns(arr, n, ind + 1, ind, dp);
+//     }
+//     return dp[ind][prev_ind] = max(take, notTake);
+// }
+// int LIS(int arr[], int n)
+// {
+//     vector<vector<int>> dp(n, vector<int>(n + 1, -1));
+//     return getAns(arr, n, 0, -1, dp);
+// }
+
+///////////read the file to make the tree
+// class Node
+// {
+// public:
+//     int data;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// void inorder(Node *root)
+// {
+//     if (root != nullptr)
+//     {
+//         inorder(root->left);
+//         cout << root->data << " ";
+//         inorder(root->right);
+//     }
+// }
+// void readFile(Node *root, ifstream &file)
+// {
+//     int w;
+//     file >> w;
+//     root = new Node(w);
+//     readFile(root->left, file);
+//     readFile(root->right, file);
+// }
+// void printf(ofstream &file)
+// {
+//     for (int i = 0; i < 5; i++)
+//     {
+//         file << i << " ";
+//     }
+//     return;
+// }
+// int main()
+// {
+//     // ofstream file;
+//     // file.open("data.txt");
+//     // if (!file.is_open())
+//     // {
+//     //     cout << "Error opening file" << endl;
+//     //     return 1;
+//     // }
+//     // printf(file);
+//     // file.close();
+//     ifstream file("data.txt");
+//     if (!file.is_open())
+//     {
+//         cout << "Error opening file" << endl;
+//         return 1;
+//     }
+//     Node *root = nullptr;
+//     readFile(root, file);
+//     file.close();
+//     inorder(root);
+//     return 0;
+// }
+
+/////////seriallization and deserialization in Binary tree
+// class Node
+// {
+// public:
+//     int key;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// void serialize(Node *root, FILE *fp)
+// {
+//     if (root == nullptr)
+//     {
+//         fprintf(fp, "%d ", -1);
+//         return;
+//     }
+//     fprintf(fp, "%d ", root->key);
+//     serialize(root->left, fp);
+//     serialize(root->right, fp);
+// }
+// void deserialize(Node *root, FILE *fp)
+// {
+//     int val;
+//     if (!fscanf(fp, "%d ", &val) || val == -1)
+//     {
+//         return;
+//     }
+//     root = new Node(val);
+//     deserialize(root->left, fp);
+//     deserialize(root->right, fp);
+// }
+// void inorder(Node *root)
+// {
+//     if (root == nullptr)
+//     {
+//         return;
+//     }
+//     inorder(root->left);
+//     cout << root->data << " ";
+//     inorder(root->right);
+// }
+// int main()
+// {
+//     Node *root = new Node(20);
+//     root->left = new Node(8);
+//     root->right = new Node(22);
+//     root->left->left = new Node(4);
+//     root->left->right = new Node(12);
+//     root->left->right->left = new Node(10);
+//     root->left->right->right = new Node(14);
+//     FILE *fp = fopen('tree.txt', "w");
+//     if (fp == nullptr)
+//     {
+//         puts("could not open the file");
+//         return 0;
+//     }
+//     serialize(root, fp);
+//     fclose(fp);
+//     Node *root1 = nullptr;
+//     fp = fopen('tree.txt', "r");
+//     deserialize(root1, fp);
+//     inorder(root1);
+//     return 0;
+// }
+
+////////////Kth common ancestor in BST
+// class Node
+// {
+// public:
+//     int data;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// void solve(Node *root, int k, int x, int y, vector<int> &ans)
+// {
+//     if (!root)
+//     {
+//         return;
+//     }
+//     ans.push_back(root->data);
+//     if (root->data > x and root->data > y)
+//     {
+//         solve(root->left, k, x, y, ans);
+//     }
+//     else if (root->data < x and root->data < y)
+//     {
+//         solve(root->right, k, x, y, ans);
+//     }
+//     return;
+// }
+// int kthcommonancestor(Node *root, int k, int x, int y)
+// {
+//     vector<int> ans;
+//     solve(root, k, x, y, ans);
+//     int n = ans.size();
+//     if (n < k)
+//         return -1;
+//     return ans[n - k];
+// }
+
+//////////sum of all substring of a number
+// class Solution
+// {
+// public:
+//     int mod = 1e9 + 7;
+//     int SumOfString(string s)
+//     {
+//         if (s.length() == 0)
+//         {
+//             return -1;
+//         }
+//         vector<long long> dp(s.length(), 0);
+//         dp[0] = s[0] - '0';
+//         long long ans = s[0] - '0';
+//         for (int i = 1; i < s.length(); i++)
+//         {
+//             dp[i] = ((dp[i - 1] - '0') * 10 + ((s[i] - '0') * (i + 1)) % mod) % mod;
+//             ans = (ans + dp[i]) % mod;
+//         }
+//         return ans;
+//     }
+// }
+
+////////Pair with minimum absolute difference in BST
+// struct node
+// {
+// public:
+//     int data;
+//     node *left;
+//     node *right;
+//     node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// void inorder(node *curr, node *&prev, int &ans)
+// {
+//     if (curr == nullptr)
+//         return;
+//     inorder(curr->left, prev, ans);
+//     if (prev != nullptr)
+//     {
+//         ans = min(curr->data - prev->data, ans);
+//     }
+//     prev = curr;
+//     inorder(curr->right, prev, ans);
+// }
+// int minDiff(node *root)
+// {
+//     node *prev = nullptr;
+//     int ans = INT_MIN;
+//     inorder(root, prev, ans);
+//     return ans;
+// }
+
+////////closest Neighbours in BST
+// class Node
+// {
+// public:
+//     int data;
+//     Node *right;
+//     Node *left;
+//     Node(int data) : data(data), right(nullptr), left(nullptr) {}
+// };
+// void findMaxForN(Node *root, int n, int &ans)
+// {
+//     if (root == nullptr)
+//         return;
+//     if (root->data < n)
+//     {
+//         ans = max(root->data, ans);
+//     }
+//     findMaxForN(root->left, n, ans);
+//     findMaxForN(root->right, n, ans);
+// }
+// int main()
+// {
+//     Node *root = new Node(5);
+//     root->right = new Node(12);
+//     root->left = new Node(2);
+//     root->left->left = new Node(1);
+//     root->right->right = new Node(21);
+//     root->right->right->right = new Node(25);
+//     root->right->right->left = new Node(19);
+//     root->right->left = new Node(9);
+//     root->left->right = new Node(3);
+//     int ans = -1;
+//     int n = 24;
+//     findMaxForN(root, n, ans);
+//     cout << ans << endl;
+//     return 0;
+// }
+
+// bool isPrimeOrNot(int n)
+// {
+//     if (n <= 1)
+//     {
+//         return false;
+//     }
+//     for (int i = 2; i <= sqrt(n); i++)
+//     {
+//         if (n % i == 0)
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// int main()
+// {
+//     vector<int> arr = {25, 20, 22, 13, 7, 4};
+//     for (int i = 0; i < arr.size(); i++)
+//     {
+//         if (arr[i] % 2 == 0)
+//         {
+//             while (!isPrimeOrNot(arr[i]))
+//             {
+//                 arr[i] -= 1;
+//             }
+//         }
+//         else
+//         {
+//             while (!isPrimeOrNot(arr[i]))
+//             {
+//                 arr[i] += 1;
+//             }
+//         }
+//     }
+//     for (auto i : arr)
+//     {
+//         cout << i << endl;
+//     }
+//     return 0;
+// }
+
 // bool isAddictive(string s){
 //     int n=s.size();
 //     for(int i=0;i<min(8,n);i++){
